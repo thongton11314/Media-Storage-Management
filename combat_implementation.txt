@@ -1,0 +1,24 @@
+// First
+// 1.0 - Finish customer classes (not customer collection)
+// 1.1 - Test customer classes
+// 1.1 - Finish media classes (not media collection)
+// 1.2 - Test factories, movies's inheritanc: take care memory leak, late binding
+
+// Second
+// 2.0 - Finish commands
+// 2.1 - Test all command's inheritance
+
+// Third
+// 3.0 - Test one customer by process commands
+
+// Fourth
+// 4.0 - Finished the customer collection
+// 4.1 - Test collection, take care memory leak, correctly store customer
+
+// Five
+// 5.0 - Finished the media collection
+// 5.1 - Test media collection, take care memory leak, correctly store movies
+
+// Six
+// Combine all test, read whole file
+// Finish comments
