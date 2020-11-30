@@ -129,8 +129,15 @@ const Val * Hashtable<Key, Val>::getValue(Key key) {
 template <typename Key, typename Val>
 bool Hashtable<Key, Val>::removeValue(Key key) {
     // remove object in the bucket, if collision look in to bst
-        // return true if remove successful
-        // return false if remove fail
+    // return true if remove successful
+    // return false if remove fail    
+    // key cannot be negative
+    if (key < 0) {
+        return false;
+    }
+    // get hash number
+    const int hash = reinterpret_cast<const int&>(key) % TABLE_SIZE;
+    //need to finish
     return false; // need to be coded
 }
 
