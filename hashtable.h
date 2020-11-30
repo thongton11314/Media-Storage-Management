@@ -47,13 +47,11 @@ Hashtable<Key, Val>::Hashtable() {
 // constuctor
 template<typename Key, typename Val>
 Hashtable<Key, Val>::Hashtable(Key key, Val val) {
-	for (int i = 0; i < TABLE_SIZE; i++)
-	{
-		if (table[i])
-		{
-            delete table[i];
-            delete table[i];
-            delete table[i];
+for (int i = 0; i < TABLE_SIZE; i++) {
+	if (table[i]) {
+		delete table[i];
+            	delete table[i];
+            	delete table[i];
 		}
 //need to finish this
 	}
