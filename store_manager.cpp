@@ -22,9 +22,10 @@ void StoreManager::buildCustomers(ifstream & infile) {
         
         // add valid client
         if (checkData) {
-            cout << *ptr << endl;
-            delete ptr; // delete this if collection is done
+            //cout << *ptr << endl;
+            //delete ptr; // delete this if collection is done
             // add customer into collection here
+            checkData = customerCollection.insertCustomer(ptr);
         }
         
         // ignore invalid client
@@ -36,61 +37,88 @@ void StoreManager::buildCustomers(ifstream & infile) {
 
 void StoreManager::buildMovies(ifstream & infile) {
 
-    /*
     // check if can read file
     if (!infile) {
         cout << "Could not read Movies file" << endl;
         return;
     }
     
-    // use for create movie object
+    // use for create, and retrieve movie object    
     Media* obj;
-    bool isDup = false;
-
-    // read entire file information
+    Media* dup;
     while (!infile.eof()) {
 
-        // create new client object
+        // create new media object
         obj = MediaFactory::createDVDMovie(infile);
 
-        // valid movies
-        if(obj != nullptr) {
+        // if object exist
+        if (obj != nullptr) {
 
-            // comedy type
-            if (dynamic_cast<Movie*>(obj)->getMovieType() == 'F') {              
-                isDup = collectionComedies.insert(dynamic_cast<Comedy*>(obj));
-            }
-
-            // dramma type
-            else if (dynamic_cast<Movie*>(obj)->getMovieType() == 'D') {
-                isDup = collectionDramas.insert(dynamic_cast<Drama*>(obj));
-            }
-
-            // classic type
-            else {
-                isDup = collectionClassics.insert(dynamic_cast<Classic*>(obj));
-            }
+            // insert, if duplicate add more stock
+            if (!mediaCollection.insert(obj)) {
+                if (mediaCollection.retrieve(*obj, dup)) {
+                    dup->addStock(obj->getStock());
+                    delete obj;
+                }
+            }            
         }
-
-        if (isDup)
-            delete obj;
+        obj = dup = nullptr;
     }
-    */
+    cout << "After Insert, total: " << mediaCollection.getTotalMedia() << endl;
+    mediaCollection.display();
+    infile.close();
 }
 
 void StoreManager::processCommands(ifstream &infile) {
-    // read until the end of commands file
-    // not need to store commands lines
-        // create a command object by CommandFactory::createCommand(infile)
-        // process commannd
-            // command.processCommand(collectionMedias, collectionCustomers)
+
+    // check if can read file
+    if (!infile) {
+        cout << "Could not read command file" << endl;
+        return;
+    }
+
+    Command* command;
+
+    // use for create, and retrieve movie object    
+
+    while (!infile.eof()) {
+
+        // create new media object
+        command = CommandFactory::createCommand(infile);
+
+        // if object exist
+        if (command != nullptr) {
+            cout << *command << endl;
+            //command->process(mediaCollection, customerCollection);
+        }
+        delete command;
+    }
 }
 
-void StoreManager::test() {
-    collectionComedies.display();
-    cout << endl;
-    collectionDramas.display();
-    cout << endl;
-    collectionClassics.display();
-    cout << endl;
+/*
+void StoreManager::testRemove(ifstream& infile) {
+
+    // check if can read file
+    if (!infile) {
+        cout << "Could not read Movies file" << endl;
+        return;
+    }
+
+    // use for create, and retrieve movie object    
+    Media* obj;
+    while (!infile.eof()) {
+
+        // create new media object
+        obj = MediaFactory::createDVDMovie(infile);
+
+        // if object exist
+        if (obj != nullptr) {
+            mediaCollection.remove(*obj);
+        }
+        delete obj;
+    }
+    cout << "After Remove, total: " << ClassicCollection.getTotalNode() << endl;
+    ClassicCollection.display();
+    infile.close();
 }
+*/

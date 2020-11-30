@@ -16,14 +16,19 @@ public:
 
     // setter
     // initialize data
-    bool setData(ifstream & inFile);
+    bool setData(ifstream& infile);
+    void setCustomerID(int id);
+    
+    // getter
+    int getCustomerID() const;
 
     // function
     // process customer history
     void processHistory(CustomerCollection&);
     
 private:
-    virtual ostream& out(ostream &) const;
+    int customerID;
+    virtual ostream& out(ostream&) const override;
 };
 
 #endif //!_COMMAND_HISTORY_

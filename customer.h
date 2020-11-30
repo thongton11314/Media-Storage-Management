@@ -26,6 +26,8 @@ class Customer {
 
         // constructor
         Customer();
+        Customer(int id);
+        Customer(int id, string first, string last);
 
         // copy constructor
         Customer(const Customer &other);

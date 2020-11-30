@@ -28,8 +28,9 @@ public:
     virtual bool setData(ifstream & infile) = 0;
     
     // pure virtual function
-    virtual char getMovieType() const = 0;
-    virtual string getMediaType() const;
+    virtual MovieType getMovieType() const = 0;
+    virtual MediaType getMediaType() const;
+    virtual string getHashKey() const = 0;
 
     // arithmetic operator
     virtual bool operator<(const Media&) const = 0;
@@ -38,8 +39,10 @@ public:
     virtual bool operator>=(const Media&) const = 0;
     virtual bool operator==(const Media&) const = 0;
     virtual bool operator!=(const Media&) const = 0;
+    virtual Media & operator=(const Media&) = 0;
 
 protected:
+    MovieType type;
     string director;
     string title;
     int year;

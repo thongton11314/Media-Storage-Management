@@ -26,8 +26,8 @@ int Movie::getYear() const {
     return this->year;
 }
 
-string Movie::getMediaType() const {
-    return "DVDMovie";
+MediaType Movie::getMediaType() const {
+    return MOVIE;
 }
 
 // use to use << opertor

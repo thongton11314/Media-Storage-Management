@@ -1,6 +1,7 @@
 #include "media_movie_classic.h"
 
 Classic::Classic() {
+    this->type = CLASSIC;
     this->stock = DEFAULT_STOCK;
     this->title = DEFAULT_TITLE;
     this->director = DEFAULT_PERSON;
@@ -11,6 +12,7 @@ Classic::Classic() {
 }
 
 Classic::Classic(const Classic & other) {
+    this->type = other.type;
     this->stock = other.stock;
     this->title = other.title;
     this->director = other.director;
@@ -37,7 +39,9 @@ bool Classic::setData(ifstream & infile) {
     getline(infile >> ws, this->title, ',');
 
     // set major actor
+    infile.ignore();
     infile >> this->majorActorFirst;
+    infile.ignore();
     infile >> this->majorActorLast;
 
     // set month
@@ -49,10 +53,6 @@ bool Classic::setData(ifstream & infile) {
     infile >> this->year;
 
     // end of line
-    infile.ignore();
-    string eol;
-    getline(infile, eol);
-
     return true;
 }
 
@@ -80,111 +80,104 @@ string Classic::getMajorActorLast() const {
     return this->majorActorLast;
 }
 
-char Classic::getMovieType() const {
-    return 'C';
+MovieType Classic::getMovieType() const {
+    return this->type;
 }
 
+string Classic::getHashKey() const {
+    return to_string(month)
+        + " " + to_string(year)
+        + " " + majorActorFirst
+        + " " + majorActorLast;
+}
+
+// arithmetic operator, sort by release date and major actor
 bool Classic::operator<(const Media & other) const {
-    const Media * ptrMedia = &other;
-    const Classic * ptrClassic = dynamic_cast<const Classic*>(ptrMedia);
-    int thisDateToInt = (this->getYear() * 10000) 
-                        + (this->getMonth() * 100);
-    int otherDateToInt = (ptrClassic->getYear() * 10000) 
-                        + (ptrClassic->getMonth() * 100);
+    if (this->getYear() != dynamic_cast<const Classic&>(other).getYear())
+        return this->getYear() < dynamic_cast<const Classic&>(other).getYear();
 
-    // compare date release
-    if (thisDateToInt != otherDateToInt)
-        return thisDateToInt < otherDateToInt;
+    if (this->getMonth() != dynamic_cast<const Classic&>(other).getMonth())
+        return this->getMonth() < dynamic_cast<const Classic&>(other).getMonth();
 
-    // compare major actor first name
-    if (this->getMajorActorFirst().compare(ptrClassic->getMajorActorFirst()) != 0)
-        return this->getMajorActorFirst().compare(ptrClassic->getMajorActorFirst()) < 0;
-
-    // compare major actor last name
-    if (this->getMajorActorLast().compare(ptrClassic->getMajorActorLast()) != 0)
-        return this->getMajorActorLast().compare(ptrClassic->getMajorActorLast()) < 0;
-
-    return false;
+    return this->getMajorActorFirst().compare(
+        dynamic_cast<const Classic&>(other).getMajorActorFirst()
+    ) < 0;
 }
 
+// arithmetic operator, sort by release date and major actor
 bool Classic::operator<=(const Media & other) const {
-    const Media * ptrMedia = &other;
-    const Classic * ptrClassic = dynamic_cast<const Classic*>(ptrMedia);
-    int thisDateToInt = (this->getYear() * 10000) 
-                        + (this->getMonth() * 100);
-    int otherDateToInt = (ptrClassic->getYear() * 10000) 
-                        + (ptrClassic->getMonth() * 100);
-
-    // compare date release
-    if (thisDateToInt > otherDateToInt)
-        return true;
-
-    // compare major actor first name
-    if (this->getMajorActorFirst().compare(ptrClassic->getMajorActorFirst()) > 0)
+    if (this->getYear() > dynamic_cast<const Classic&>(other).getYear())
         return false;
 
-    // compare major actor last name
-    if (this->getMajorActorLast().compare(ptrClassic->getMajorActorLast()) > 0)
+    if (this->getMonth() > dynamic_cast<const Classic&>(other).getMonth())
         return false;
 
-    return true;
+    return this->getMajorActorFirst().compare(
+        dynamic_cast<const Classic&>(other).getMajorActorFirst()
+    ) <= 0;
 }
 
+// arithmetic operator, sort by release date and major actor
 bool Classic::operator>(const Media & other) const {
-    const Media * ptr = &other;
-    return !(*this < *(dynamic_cast<const Classic*>(ptr)));
+    if (this->getYear() != dynamic_cast<const Classic&>(other).getYear())
+        return this->getYear() > dynamic_cast<const Classic&>(other).getYear();
+
+    if (this->getMonth() != dynamic_cast<const Classic&>(other).getMonth())
+        return this->getMonth() > dynamic_cast<const Classic&>(other).getMonth();
+
+    return this->getMajorActorFirst().compare(
+        dynamic_cast<const Classic&>(other).getMajorActorFirst()
+    ) > 0;
 }
 
+// arithmetic operator, sort by release date and major actor
 bool Classic::operator>=(const Media & other) const {
-    const Media * ptrMedia = &other;
-    const Classic * ptrClassic = dynamic_cast<const Classic*>(ptrMedia);
-    int thisDateToInt = (this->getYear() * 10000) 
-                        + (this->getMonth() * 100);
-    int otherDateToInt = (ptrClassic->getYear() * 10000) 
-                        + (ptrClassic->getMonth() * 100);
-
-    // compare date release
-    if (thisDateToInt < otherDateToInt)
-        return true;
-
-    // compare major actor first name
-    if (this->getMajorActorFirst().compare(ptrClassic->getMajorActorFirst()) < 0)
+    if (this->getYear() < dynamic_cast<const Classic&>(other).getYear())
         return false;
 
-    // compare major actor last name
-    if (this->getMajorActorLast().compare(ptrClassic->getMajorActorLast()) < 0)
+    if (this->getMonth() < dynamic_cast<const Classic&>(other).getMonth())
         return false;
 
-    return true;
+    return this->getMajorActorFirst().compare(
+        dynamic_cast<const Classic&>(other).getMajorActorFirst()
+    ) >= 0;
 }
 
+// arithmetic operator, sort by release date and major actor
 bool Classic::operator==(const Media & other) const {
-    const Media * ptrMedia = &other;
-    const Classic * ptrClassic = dynamic_cast<const Classic*>(ptrMedia);
-    int thisDateToInt = (this->getYear() * 10000) 
-                        + (this->getMonth() * 100);
-    int otherDateToInt = (ptrClassic->getYear() * 10000) 
-                        + (ptrClassic->getMonth() * 100);
-    if ((thisDateToInt == otherDateToInt)
-        && (this->getMajorActorFirst().compare(ptrClassic->getMajorActorFirst()) == 0)
-        && (this->getMajorActorLast().compare(ptrClassic->getMajorActorLast()) == 0))
-        return true;
-    return false;
+
+    const Classic& ptrClassic = dynamic_cast<const Classic&>(other);
+    return (this->getYear() == dynamic_cast<const Classic&>(other).getYear())
+        && (this->getMonth() == dynamic_cast<const Classic&>(other).getMonth()
+        && (this->getMajorActorFirst().compare(
+            dynamic_cast<const Classic&>(other).getMajorActorFirst()
+        ) == 0));
+}
+
+Media & Classic::operator=(const Media& other) {
+    this->type = dynamic_cast<const Classic&>(other).getMovieType();
+    this->stock = dynamic_cast<const Classic&>(other).getStock();
+    this->director = dynamic_cast<const Classic&>(other).getDirector();
+    this->title = dynamic_cast<const Classic&>(other).getTitle();
+    this->majorActorFirst = dynamic_cast<const Classic&>(other).getMajorActorFirst();
+    this->majorActorLast = dynamic_cast<const Classic&>(other).getMajorActorLast();
+    this->month = dynamic_cast<const Classic&>(other).getMonth();
+    this->year = dynamic_cast<const Classic&>(other).getYear();
+    return *this;
 }
 
 bool Classic::operator!=(const Media & other) const {
-    const Media * ptr = &other;
-    return !(*this == *(dynamic_cast<const Classic*>(ptr)));
+    return !(*this == dynamic_cast<const Classic&>(other));
 }
 
 void Classic::print(ostream & stream) const {
-    cout << this->getMovieType() << ", " 
+    cout << this->getMovieType() << ", "
     << this->getStock() << ", "
     << this->getDirector() << ", "
     << this->getTitle() << ", "
     << this->getMajorActorFirst() << " " << this->getMajorActorLast() << ", "
     << this->getMonth() << ", "
-    << this->getYear() << ". ";
+    << this->getYear();
 }
 
 ostream & operator<<(ostream & out, const Classic & movie) {

@@ -18,16 +18,28 @@ public:
     // deconstructor
     ~Borrow();
 
-    // setter
-    // initialize data
-    bool setData(ifstream & infile);
+    bool setData(ifstream& infile);
 
-    // function
-    void process(MediaCollection&, CustomerCollection&);
-    bool procesReturn(Media*, Customer*); // part of process function
+    // setter
+    void setMedia(Media* media);
+    bool setCustomerID(int id);
+    void setMediaType(MediaType type);
+    void setMovieType(MovieType type);
+
+    // getter
+    int getCustomerID() const;
+    MediaType getMediaType() const;
+    MovieType getMovieType() const;
+    const Media & getMedia() const;
+
+    bool processBorrow(Media*, Customer*); // part of process function
 
 private:
-    virtual ostream& out(ostream &) const;
+    int customerID;
+    MediaType mediaType;
+    MovieType movieType;
+    Media * media;
+    virtual ostream& out(ostream &) const override;
 };
 
 #endif //!_COMMAND_BORROW_

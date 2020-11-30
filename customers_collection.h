@@ -11,9 +11,9 @@ public:
     CustomerCollection();
     ~CustomerCollection();
     bool insertCustomer(Customer * customer);
-    bool retrieveCustomer(const int & id, Customer *& retriever) const;
+    bool retrieveCustomer(const int & id, Customer *& retriever);
     bool removeCustomerByID(const int & id);
-    const Customer * getACustomer(const int & id);
+    const Customer * getACustomer(int id);
 private:
     Hashtable<int, Customer> collection;
 };

@@ -15,8 +15,9 @@ public:
     Classic();
 
     // copy constructor
-    Classic(const Classic &classic);
+    Classic(const Classic & classic);
     
+    // initial data from movie file
     bool setData(ifstream & infile);
 
     // deconstructor
@@ -31,7 +32,8 @@ public:
     int getMonth() const;
     string getMajorActorFirst() const;
     string getMajorActorLast() const;
-    virtual char getMovieType() const;
+    virtual MovieType getMovieType() const;
+    virtual string getHashKey() const;
 
     // function
     void print(ostream & out) const;
@@ -43,6 +45,7 @@ public:
     virtual bool operator>=(const Media&) const;
     virtual bool operator==(const Media&) const;
     virtual bool operator!=(const Media&) const;
+    virtual Media & operator=(const Media&);
 
 private:
     string majorActorFirst; 

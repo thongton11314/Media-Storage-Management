@@ -30,12 +30,15 @@ public:
     ~BSTree();         // calls makeEmpty which deallocates all memory
     bool insert(T*);   // insert object into the tree
     bool retrieve(const T&, T*&) const;     // retrieve object
+    bool remove(const T&);  // remove node
     void display() const;   // displays the contents of a tree to cout
     void makeEmpty();       // empty the current tree, deallocates all memory
     bool isEmpty() const;   // returns true if tree is empty
+    int getTotalNode() const;
 
-private:
-    
+protected:
+    int totalNode;
+
     // node that has client data and left,right node
     struct Node {
         T* data;
@@ -56,12 +59,13 @@ private:
     // third parameter is pointer point to target
     bool retrieveHelper(Node*, const T &, T*&) const;
 
+    bool removeHelper(Node *& current, const T& key);
+
     // use for traverse recursively tree, then print out data
     void displayHelper(Node *) const;
 
     // use for traverse recursively tree, then delete every node
     void makeEmptyHelper(Node *&);
-
 };
 
 //----------------------------------------------------------------------------
@@ -70,6 +74,7 @@ private:
 template<typename T>
 BSTree<T>::BSTree() {
     root = nullptr;
+    totalNode = 0;
 }
 
 //----------------------------------------------------------------------------
@@ -95,12 +100,18 @@ bool BSTree<T>::insert(T * newData) {
         // add new client, and assign left and right subtree null pointer
         root = new Node{ newData, nullptr, nullptr };
         assert(root != nullptr); // out of memory
+        totalNode++;
         return true;
     }
 
     // tree already has root
-    else
-        return insertHelper(newData, root);
+    else {
+        if (insertHelper(newData, root)) {
+            totalNode++;
+            return true;
+        }
+        return false;
+    }
 }
 
 //----------------------------------------------------------------------------
@@ -180,6 +191,74 @@ bool BSTree<T>::retrieveHelper(Node* current,
     }
 }
 
+template<typename T>
+bool BSTree<T>::remove(const T& target) {
+    if (this->root == nullptr) {
+        return false;
+    }
+    else {
+        if (removeHelper(root, target)) {
+            totalNode--;
+            return true;
+        }
+        return false;
+    }
+}
+
+template<typename T>
+bool BSTree<T>::removeHelper(Node *& current, const T& target) {
+
+    // target not found
+    if (current == nullptr) {
+        return false;
+    }
+
+    // travere left-sub tree
+    if (target < *current->data) {
+        return removeHelper(current->left, target);
+    }
+
+    // traverse right-sub tree
+    else if (target > *current->data) {
+        return removeHelper(current->right, target);
+    }
+
+    // target is found
+    else {
+
+        // case 1: no child
+        if (current->left == nullptr && current->right == nullptr) {
+            delete current->data;
+            delete current;
+            current = nullptr;
+            return true;
+        }
+
+        // case 2: two children
+        else if (current->left && current->right) {
+            Node* temp = current->right;
+            while (temp->left != nullptr) {
+                temp = temp->left;
+            }
+
+            // something wrong here, it doesn't convert data, maybe because of factory
+            *current->data = *temp->data;
+            return removeHelper(current->right, *temp->data);            
+        }
+
+        // case 3: only one child
+        else {
+            Node* child = (current->left) ? current->left : current->right;
+            Node* temp = current;
+            current = child;
+            delete temp->data;
+            delete temp;
+            temp = nullptr;
+            return true;
+        }
+    }
+}
+
 //----------------------------------------------------------------------------
 // display
 // display the node of tree from left to right
@@ -239,7 +318,9 @@ void BSTree<T>::makeEmptyHelper(Node *& current) {
     if (current != nullptr) {
         makeEmptyHelper(current->left);   // traverse left
         makeEmptyHelper(current->right);  // traverse right
-        delete current->data;             // delete node data
+        if (current->data != nullptr) {
+            delete current->data;         // delete node data
+        }
         delete current;                   // delete node
     }
 }
@@ -251,4 +332,10 @@ template<typename T>
 bool BSTree<T>::isEmpty() const {
     return root == nullptr;
 }
+
+template<typename T>
+int BSTree<T>::getTotalNode() const {
+    return totalNode;
+}
+
 #endif // !_BST_CONTAINER_

@@ -1,8 +1,9 @@
+
 #include "media_movie_factory.h"
 
 Movie * MovieFactory::createMovie(ifstream & infile) {
     Movie * newMovie = nullptr;
-    char movieType;
+    MovieType movieType;
 
     // get movie type
     infile >> movieType;
@@ -13,23 +14,25 @@ Movie * MovieFactory::createMovie(ifstream & infile) {
         infile.ignore(99, '\n');        
 		return nullptr;
     }
+
+    // specific type
     switch (movieType) {    
-    case 'F':
+    case COMEDY:
         newMovie = createMovieComedy(infile);
-        break;
-    case 'D':
-       newMovie = createMovieDrama(infile);
         break;    
-    case 'C':
+    case CLASSIC:
         newMovie = createMovieClassic(infile);
+        break;
+    case DRAMA:
+        newMovie = createMovieDrama(infile);
         break;
     default:
         string fullInfor;
         getline(infile, fullInfor);
         cerr << "Type \"" << movieType << "\" is not recognized: "
-            << movieType << fullInfor << endl;     
+            << movieType << fullInfor << endl;
         break;
-    }
+    }    
     return newMovie;
 }
 

@@ -6,6 +6,16 @@ Customer::Customer() {
     id = DEFAULT_ID;
 }
 
+Customer::Customer(int id) {
+    this->id = id;
+}
+
+Customer::Customer(int id, string lastName, string firstName) {
+    this->id = id;
+    this->firstName = lastName;
+    this->lastName = firstName;
+}
+
 Customer::Customer(const Customer & other) {
     firstName = other.firstName;
     lastName = other.lastName;
@@ -13,6 +23,18 @@ Customer::Customer(const Customer & other) {
 }
 
 Customer::~Customer() {
+}
+
+void Customer::setID(int id) {
+    this->id = id;
+}
+
+void Customer::setFirstName(string first) {
+    this->firstName = first;
+}
+
+void Customer::setLastName(string last) {
+    this->lastName = last;
 }
 
 bool Customer::setData(ifstream & infile) {
@@ -77,6 +99,7 @@ bool Customer::returnMedia(Media * target) {
     }
 	return isIn;
     */
+    return false;
 }
 
 void Customer::addHistory(Command * command) {
@@ -89,6 +112,10 @@ bool Customer::operator<(const Customer & other) const {
 
 bool Customer::operator<=(const Customer & other) const {
     return id <= other.id;
+}
+
+bool Customer::operator>(const Customer& other) const {
+    return id > other.id;
 }
 
 bool Customer::operator>=(const Customer & other) const {

@@ -11,19 +11,27 @@ class Return : public Command {
     friend ostream& operator<<(ostream&, const Return&);
 
 public:
+
+    // constructor
     Return();
+    
+    // deconstructor
     ~Return();
 
     // setter
-    // initialize data
-    bool setData(ifstream & inFile);
+    bool setData(ifstream& infile);
+    bool setCustomerID(int id);
+    int getCustomerID();
 
     // function
-    void process(MediaCollection&, CustomerCollection&);
     bool procesReturn(Media*, Customer*); // part of process function
 
 private:
-    virtual ostream& out(ostream &) const;
+    int customerID;
+    MediaType mediaType;
+    MovieType movieType;
+    Media* media;
+    virtual ostream& out(ostream&) const override;
 };
 
 #endif //!_COMMAND_RETURN_

@@ -6,6 +6,7 @@
 #include "customers_collection.h"
 #include "media_collection.h"
 #include "media_factory.h"
+#include "command_factory.h"
 using namespace std;
 
 // Class TheaterManager:
@@ -27,12 +28,10 @@ class StoreManager {
 
         // process all commands from file
         void processCommands(ifstream & infile);
-        void test();
-    private:
-        CustomerCollection collectionCustomers;
-        MediaCollection collectionComedies;
-        MediaCollection collectionClassics;
-        MediaCollection collectionDramas;
-};
 
+        //void testRemove(ifstream& infile);
+    private:
+        CustomerCollection customerCollection;
+        MediaCollection mediaCollection;
+};
 #endif // !THEATER_MANAGER

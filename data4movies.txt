@@ -28,3 +28,4 @@ C, 10, Stanley Kubrick, A Clockwork Orange, Malcolm McDowell 2 1971
 F, 10, John Landis, National Lampoon's Animal House, 1978
 D, 10, Nancy Savoca, Dogfight, 1991
 F, 10, Nora Ephron, You've Got Mail, 1998
+
