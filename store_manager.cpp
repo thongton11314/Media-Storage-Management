@@ -22,9 +22,6 @@ void StoreManager::buildCustomers(ifstream & infile) {
         
         // add valid client
         if (checkData) {
-            //cout << *ptr << endl;
-            //delete ptr; // delete this if collection is done
-            // add customer into collection here
             checkData = customerCollection.insertCustomer(ptr);
         }
         
@@ -33,6 +30,7 @@ void StoreManager::buildCustomers(ifstream & infile) {
             delete ptr;
         }
     }
+    customerCollection.display();
 }
 
 void StoreManager::buildMovies(ifstream & infile) {

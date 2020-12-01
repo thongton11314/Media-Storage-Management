@@ -6,14 +6,14 @@
 
 // add commments here
 class CustomerCollection {
-    friend ostream& operator<<(ostream&, const CustomerCollection&);
 public:
     CustomerCollection();
     ~CustomerCollection();
     bool insertCustomer(Customer * customer);
-    bool retrieveCustomer(const int & id, Customer *& retriever);
+    bool retrieveCustomer(const int & id, Customer *& retriever) const;
     bool removeCustomerByID(const int & id);
-    const Customer * getACustomer(int id);
+    const Customer * getACustomer(const int & id) const;
+    void display() const;
 private:
     Hashtable<int, Customer> collection;
 };

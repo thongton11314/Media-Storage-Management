@@ -9,7 +9,7 @@ bool CustomerCollection::insertCustomer(Customer * customer) {
 }
 
 bool CustomerCollection::retrieveCustomer(const int & id, 
-                                        Customer *& retriever) {
+                                        Customer *& retriever) const {
     return collection.retrieveValue(id, retriever);
 }
 
@@ -17,6 +17,10 @@ bool CustomerCollection::removeCustomerByID(const int & id) {
     return collection.removeValue(id);
 }
 
-const Customer* CustomerCollection::getACustomer(int id) {
+const Customer* CustomerCollection::getACustomer(const int & id) const {
     return collection.getValue(id);
+}
+
+void CustomerCollection::display() const {
+    collection.display();
 }
