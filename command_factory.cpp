@@ -1,5 +1,7 @@
 #include "command_factory.h"
-
+//----------------------------------------------------------------------------
+// createCommand
+// creates the different types of commands 
 Command * CommandFactory::createCommand(ifstream & infile) {
     Command * newCommand = nullptr;
     char commandType;
@@ -34,7 +36,9 @@ Command * CommandFactory::createCommand(ifstream & infile) {
     // return pointer of command
     return newCommand;
 }
-
+//----------------------------------------------------------------------------
+// createBorrow
+// creates the borrow object
 Command * CommandFactory::createBorrow(ifstream& infile) {
 
     // create a borrow
@@ -46,7 +50,9 @@ Command * CommandFactory::createBorrow(ifstream& infile) {
     delete cBorrow;
     return nullptr;
 }
-
+//----------------------------------------------------------------------------
+// createReturn
+// creates the return object
 Command * CommandFactory::createReturn(ifstream& infile) {
 
     Return* cReturn = new Return();
@@ -57,7 +63,9 @@ Command * CommandFactory::createReturn(ifstream& infile) {
     delete cReturn;
     return nullptr;
 }
-
+//----------------------------------------------------------------------------
+// createHistory
+// creates the history object
 Command * CommandFactory::createHistory(ifstream& infile) {
     History* cHistory = new History();
     cHistory->setCommandType(HISTORY);
@@ -67,11 +75,14 @@ Command * CommandFactory::createHistory(ifstream& infile) {
     delete cHistory;
     return nullptr;
 }
-
+//----------------------------------------------------------------------------
+// createInventory
+// creates the inventory object
 Command * CommandFactory::createInventory(ifstream& infile) {
     Inventory* cInventory = new Inventory();
     return cInventory;
 }
+//----------------------------------------------------------------------------
 
 void CommandFactory::errorType(const char& cType, ifstream& infile) {
     string fullCommand;
