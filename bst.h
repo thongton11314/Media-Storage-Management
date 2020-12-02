@@ -190,7 +190,12 @@ bool BSTree<T>::retrieveHelper(Node* current,
         return true;
     }
 }
-
+//----------------------------------------------------------------------------
+// remove
+// remove the node that match with target
+// call the removeHelper to traverse recursively
+// return true if removed successfully
+//        false target not in tree
 template<typename T>
 bool BSTree<T>::remove(const T& target) {
     if (this->root == nullptr) {
@@ -204,7 +209,12 @@ bool BSTree<T>::remove(const T& target) {
         return false;
     }
 }
-
+//----------------------------------------------------------------------------
+// removeHelper
+// recursively traverse the tree
+// this function is sub-function of remove
+// return true if found the target
+//        false if not found the target
 template<typename T>
 bool BSTree<T>::removeHelper(Node *& current, const T& target) {
 
