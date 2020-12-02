@@ -1,36 +1,43 @@
 #include "command.h"
-
+//----------------------------------------------------------------------------
+//constructor
 Command::Command() {
 	this->type = DEFAULT_TYPE;
 	this->customerID = DEFAULT_ID;
 	this->fullCommand = DEFAULT_TYPE;
 }
-
+//----------------------------------------------------------------------------
+//copy constructor 
 Command::Command(const Command& other) {
 	this->type = other.type;
 	this->customerID = other.customerID;
 	this->fullCommand = other.fullCommand;
 }
-
+//----------------------------------------------------------------------------
+//destructor 
 Command::~Command() {
 }
-
+//----------------------------------------------------------------------------
+//set user ID
 void Command::setCustomerID(int ID) {
 	this->customerID = ID;
 }
-
+//----------------------------------------------------------------------------
+//set command type
 void Command::setCommandType(char input) {
 	this->type = input;
 }
-
+//----------------------------------------------------------------------------
+//get user ID
 int Command::getCustomerID() const {
 	return this->customerID;
 }
-
+//----------------------------------------------------------------------------
+//get command type
 CommandType Command::getCommandType() const {
 	return this->type;
 }
-
+//----------------------------------------------------------------------------
 // better use binding
 bool Command::process(MediaCollection & meColl, CustomerCollection & cusColl) {
 	
@@ -68,12 +75,12 @@ bool Command::process(MediaCollection & meColl, CustomerCollection & cusColl) {
 	}
 	return isProcess;
 }
-
+//----------------------------------------------------------------------------
 ostream& Command::out(ostream& out) const {
 	out << this->type;
 	return out;
 }
-
+//----------------------------------------------------------------------------
 ostream& operator<<(ostream& output, const Command& command) {
 	command.out(output);
 	return output;
