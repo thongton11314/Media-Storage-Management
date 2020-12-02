@@ -1,5 +1,6 @@
 #include "command_borrow.h"
-
+//----------------------------------------------------------------------------
+// constructor
 Borrow::Borrow() {
 	this->type = BORROW;
 	this->customerID = DEFAULT_ID;
@@ -7,14 +8,17 @@ Borrow::Borrow() {
 	this->movieType = DEFAULT_TYPE;
 	this->media = nullptr;
 }
-
+//----------------------------------------------------------------------------
+// destructor
 Borrow::~Borrow() {
 	if (this->media != nullptr) {
 		delete this->media;
 		this->media = nullptr;
 	}
 }
-
+//----------------------------------------------------------------------------
+// setData
+// sets the data from the file including customer ID and media type
 bool Borrow::setData(ifstream& infile) {
 
 	// create media, and some temporary data
@@ -157,8 +161,11 @@ bool Borrow::setData(ifstream& infile) {
 	bool isValid = this->media != nullptr ? isValid = true : isValid = false;
 	return isValid;
 }
-
-bool Borrow::processBorrow(MediaCollection & meColl, CustomerCollection & cusColl) {
+//----------------------------------------------------------------------------
+// processBorrow
+// checks the inventory and processes the borrow command 
+bool Borrow::processBorrow(MediaCollection & meColl, 
+			   CustomerCollection & cusColl) {
 
 	Customer* cusRetriever;
 
@@ -214,12 +221,12 @@ bool Borrow::processBorrow(MediaCollection & meColl, CustomerCollection & cusCol
 	// fail borrow
 	return false;
 }
-
+//----------------------------------------------------------------------------
 ostream& Borrow::out(ostream& out) const {
 	out << this->fullCommand;
 	return out;
 }
-
+//----------------------------------------------------------------------------
 ostream& operator<<(ostream& out, const Borrow& b) {
 	b.out(out);
 	return out;
