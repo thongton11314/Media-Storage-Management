@@ -49,7 +49,7 @@ Command * CommandFactory::createBorrow(ifstream& infile) {
 
 Command * CommandFactory::createReturn(ifstream& infile) {
 
-    Borrow* cReturn = new Borrow();
+    Return* cReturn = new Return();
     cReturn->setCommandType(RETURN);
     if (cReturn->setData(infile)) {
         return cReturn;
@@ -76,6 +76,6 @@ Command * CommandFactory::createInventory(ifstream& infile) {
 void CommandFactory::errorType(const char& cType, ifstream& infile) {
     string fullCommand;
     getline(infile, fullCommand, '\n');
-    cerr << "Invalid command type '" << cType << "': "
-        << cType << fullCommand << endl;
+    cerr << "Command, invalid command type '" << cType << "':"
+        << '\n' << "  " << cType << fullCommand << endl;
 }

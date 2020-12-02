@@ -12,7 +12,7 @@ private:
     static Movie * createMovieComedy(ifstream & infile);
     static Movie * createMovieDrama(ifstream & infile);
     static Movie * createMovieClassic(ifstream & infile);
-    // futher movie type add here
+    static void errorType(const char& cType, ifstream& infile);
 };
 
 #endif //!_MEDIA_MOVIE_FACTORY_

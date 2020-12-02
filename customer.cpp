@@ -1,4 +1,5 @@
 #include "customer.h"
+#include "command.h"
 
 Customer::Customer() {
     firstName = DEFAULT_NAME;
@@ -23,6 +24,22 @@ Customer::Customer(const Customer & other) {
 }
 
 Customer::~Customer() {
+
+    // clear borrowing
+    for (int i = borrowing.size(); i > 0; i--) {
+        if (borrowing.back()) {
+            delete borrowing.back();
+        }
+        borrowing.pop_back();
+    }
+
+    // clear history
+    for (int i = history.size(); i > 0; i--) {
+        if (history.back()) {
+            delete history.back();
+        }
+        history.pop_back();
+    }
 }
 
 void Customer::setID(int id) {
@@ -82,24 +99,22 @@ void Customer::borrowMedia(Media * media) {
     borrowing.push_back(media);
 }
 
-// need to work on media comparision before this
 bool Customer::returnMedia(Media * target) {
 
-    /*
-    bool isIn = false;
-    vector<Media*>::iterator i = borrowing.begin();
-    int count = 0;
-	while (i != borrowing.end()) {
-        if (*(borrowing.at(count)) == *target) {
-            borrowing.erase(i);
-            isIn = true;
+    bool isReturn = false;    
+    for (int i = 0; i < borrowing.size() && isReturn == false; i++) {
+        if (*borrowing.at(i) == *target) {
+            Media* temp = borrowing.at(i);
+            borrowing.at(i) = borrowing.at(borrowing.size() - 1);
+            borrowing.at(borrowing.size() - 1) = temp;
+            if (borrowing.back()) {
+                delete borrowing.back();
+            }
+            borrowing.pop_back();
+            isReturn = true;
         }
-        count++;
-        i++;
     }
-	return isIn;
-    */
-    return false;
+    return isReturn;
 }
 
 void Customer::addHistory(Command * command) {

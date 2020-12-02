@@ -1,4 +1,3 @@
-
 #include "media_movie_factory.h"
 
 Movie * MovieFactory::createMovie(ifstream & infile) {
@@ -27,10 +26,7 @@ Movie * MovieFactory::createMovie(ifstream & infile) {
         newMovie = createMovieDrama(infile);
         break;
     default:
-        string fullInfor;
-        getline(infile, fullInfor);
-        cerr << "Type \"" << movieType << "\" is not recognized: "
-            << movieType << fullInfor << endl;
+        errorType(movieType, infile);
         break;
     }    
     return newMovie;
@@ -58,4 +54,11 @@ Movie * MovieFactory::createMovieClassic(ifstream & infile) {
         return classic;
     delete classic;
     return nullptr;
+}
+
+void MovieFactory::errorType(const char& mType, ifstream& infile) {
+    string fullInfor;
+    getline(infile, fullInfor);
+    cerr << "Media, type \'" << mType << "\' is not recognized:"
+        << '\n' << "  " << mType << fullInfor << endl;
 }

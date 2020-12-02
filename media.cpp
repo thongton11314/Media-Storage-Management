@@ -15,9 +15,10 @@ void Media::addStock(unsigned int amount) {
 }
 
 bool Media::reduceStock(int amount) {
-    if (amount > this->stock)
+    if (this->stock - amount < 0)
         return false;
-    this->stock -= amount;
+    else
+        this->stock -= amount;
     return true;
 }
 

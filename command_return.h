@@ -20,14 +20,11 @@ public:
 
     // setter
     bool setData(ifstream& infile);
-    bool setCustomerID(int id);
-    int getCustomerID();
 
-    // function
-    bool procesReturn(Media*, Customer*); // part of process function
+    // process
+    bool processReturn(MediaCollection&, CustomerCollection&);
 
 private:
-    int customerID;
     MediaType mediaType;
     MovieType movieType;
     Media* media;

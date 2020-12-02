@@ -15,10 +15,10 @@ void StoreManager::buildCustomers(ifstream & infile) {
     Customer* ptr;
     bool checkData;                         // used for reading good data
     while (!infile.eof()) {
-        ptr = new Customer();               // create new client object
+        ptr = new Customer();               // create new customer object
         
         // must have setData implementation of client
-        checkData = ptr->setData(infile);   // fill the client object
+        checkData = ptr->setData(infile);   // fill the customer object
         
         // add valid client
         if (checkData) {
@@ -30,7 +30,7 @@ void StoreManager::buildCustomers(ifstream & infile) {
             delete ptr;
         }
     }
-    customerCollection.display();
+    infile.close();
 }
 
 void StoreManager::buildMovies(ifstream & infile) {
@@ -44,6 +44,8 @@ void StoreManager::buildMovies(ifstream & infile) {
     // use for create, and retrieve movie object    
     Media* obj;
     Media* dup;
+
+    // read file
     while (!infile.eof()) {
 
         // create new media object
@@ -62,12 +64,12 @@ void StoreManager::buildMovies(ifstream & infile) {
         }
         obj = dup = nullptr;
     }
-    cout << "After Insert, total: " << mediaCollection.getTotalMedia() << endl;
-    mediaCollection.display();
+
+    // close file
     infile.close();
 }
 
-void StoreManager::processCommands(ifstream &infile) {
+void StoreManager::processCommands(ifstream & infile) {
 
     // check if can read file
     if (!infile) {
@@ -75,48 +77,33 @@ void StoreManager::processCommands(ifstream &infile) {
         return;
     }
 
+    // use to create command object
     Command* command;
 
-    // use for create, and retrieve movie object    
-
+    // read file
     while (!infile.eof()) {
 
-        // create new media object
+        // create command
         command = CommandFactory::createCommand(infile);
 
-        // if object exist
+        // process command
         if (command != nullptr) {
-            cout << *command << endl;
-            //command->process(mediaCollection, customerCollection);
-        }
-        delete command;
+
+            // process comand and delete if fail to process
+            // if succesful, return or borrow commands will be assign to customer
+            if (!command->process(mediaCollection, customerCollection)) {
+                delete command;
+                command = nullptr;
+            }
+
+            // history and inventory will be deleted, 
+            // since commands not assign to customer
+            else if (command->getCommandType() == HISTORY
+                || command->getCommandType() == INVENTORY) {
+                delete command;
+                command = nullptr;
+            }
+        }        
     }
-}
-
-/*
-void StoreManager::testRemove(ifstream& infile) {
-
-    // check if can read file
-    if (!infile) {
-        cout << "Could not read Movies file" << endl;
-        return;
-    }
-
-    // use for create, and retrieve movie object    
-    Media* obj;
-    while (!infile.eof()) {
-
-        // create new media object
-        obj = MediaFactory::createDVDMovie(infile);
-
-        // if object exist
-        if (obj != nullptr) {
-            mediaCollection.remove(*obj);
-        }
-        delete obj;
-    }
-    cout << "After Remove, total: " << ClassicCollection.getTotalNode() << endl;
-    ClassicCollection.display();
     infile.close();
 }
-*/

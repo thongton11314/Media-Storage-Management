@@ -48,5 +48,7 @@ protected:
     int year;
     virtual void print(ostream & out) const = 0;
 };
-
+#include "media_movie_comedy.h"
+#include "media_movie_classic.h"
+#include "media_movie_drama.h"
 #endif // !_MOVIE_

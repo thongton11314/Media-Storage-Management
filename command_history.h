@@ -17,17 +17,12 @@ public:
     // setter
     // initialize data
     bool setData(ifstream& infile);
-    void setCustomerID(int id);
-    
-    // getter
-    int getCustomerID() const;
 
     // function
     // process customer history
-    void processHistory(CustomerCollection&);
+    bool processHistory(CustomerCollection&);
     
 private:
-    int customerID;
     virtual ostream& out(ostream&) const override;
 };
 

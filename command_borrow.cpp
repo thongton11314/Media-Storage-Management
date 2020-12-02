@@ -9,14 +9,12 @@ Borrow::Borrow() {
 }
 
 Borrow::~Borrow() {
-	delete media;
+	if (this->media != nullptr) {
+		delete this->media;
+		this->media = nullptr;
+	}
 }
 
-// three type/
-// B 8000 D F You've Got Mail, 1998
-// B 1000 D D Barry Levinson, Good Morning Vietnam,
-// B 1000 D C 5 1940 Katherine Hepburn
-// Read from customer number until the end
 bool Borrow::setData(ifstream& infile) {
 
 	// create media, and some temporary data
@@ -41,7 +39,8 @@ bool Borrow::setData(ifstream& infile) {
 	// if customer id not number or negative
 	if (infile.fail() || customerID < 0) {
 		getline(infile, temp, '\n');
-		cout << "Customer ID is invalid: " << fullCommand + temp << endl;
+		cout << "Command, customer ID is invalid:" 
+			<< '\n' << "  " << fullCommand + temp << endl;
 		return false;
 	}
 
@@ -132,20 +131,25 @@ bool Borrow::setData(ifstream& infile) {
 
 		// invalid movie type
 		default:
+			infile.ignore();
 			getline(infile, temp, '\n');
 			this->fullCommand += temp;
-			cerr << "Invalid movie type '" << this->movieType << "': "
-				<< this->fullCommand << endl;
+			cerr << "Command, invalid movie type '" << this->movieType << "':"
+				<< '\n' << "  " << this->fullCommand << endl;
 			break;
 		}
 		break;
 
 	// invalid media type
-	default:		
+	default:
+		infile.ignore();
 		getline(infile, temp, '\n');
+		fullCommand += ' ';
+		fullCommand += this->mediaType;
+		fullCommand += ' ';
 		fullCommand += temp;
-		cerr << "Invalid media type '" << this->mediaType << "': "
-			<< fullCommand << endl;
+		cerr << "Command, invalid media type '" << this->mediaType << "': "
+			<< '\n' << "  " << fullCommand << endl;
 		break;
 	}
 	infile.clear();
@@ -154,39 +158,60 @@ bool Borrow::setData(ifstream& infile) {
 	return isValid;
 }
 
-void Borrow::setMedia(Media* media) {
-	this->media = media;
-}
+bool Borrow::processBorrow(MediaCollection & meColl, CustomerCollection & cusColl) {
 
-bool Borrow::setCustomerID(int id) {
-	return this->customerID = id;
-}
+	Customer* cusRetriever;
 
-void Borrow::setMediaType(MediaType type) {
-	this->mediaType = type;
-}
+	// check customer exist
+	if (cusColl.retrieveCustomer(this->getCustomerID(), cusRetriever)) {
 
-void Borrow::setMovieType(MovieType type) {
-	this->mediaType = type;
-}
+		// check command contain media
+		if (this->media != nullptr) {
 
-int Borrow::getCustomerID() const {
-	return this->customerID;
-}
+			// check media exist
+			Media* meRetriever = nullptr;			
+			if (meColl.retrieve(*this->media, meRetriever)) {
 
-MediaType Borrow::getMediaType() const {
-	return this->mediaType;
-}
+				// reduce media strock
+				if (meRetriever->reduceStock(1)) {
 
-MovieType Borrow::getMovieType() const {
-	return movieType;
-}
+					// customer borrow media
+					cusRetriever->borrowMedia(this->media);
+					this->media = nullptr;
 
-const Media & Borrow::getMedia() const {
-	return *this->media;
-}
+					// add customer history
+					cusRetriever->addHistory(this);
+					return true;
+				}
 
-bool Borrow::processBorrow(Media*, Customer*) {
+				// out of stock
+				else {
+					cerr << "Command, media is out of stock:"
+						<< '\n' << "  " << this->fullCommand << endl;
+				}
+			}
+
+			// media is not exist
+			else {
+				cerr << "Command, media is not in media collection:"
+					<< '\n' << "  " << this->fullCommand << endl;
+			}
+		}
+
+		// command doesn't contain media
+		else {
+			cerr << "Command, this command doesn't contain media:"
+				<< '\n' << "  " << this->fullCommand << endl;
+		}
+	}
+
+	// customer is not exist
+	else {
+		cerr << "Command, customer does not exist:"
+			<< '\n' << "  " << this->fullCommand << endl;
+	}
+
+	// fail borrow
 	return false;
 }
 
@@ -195,7 +220,7 @@ ostream& Borrow::out(ostream& out) const {
 	return out;
 }
 
-ostream& operator<<(ostream& out, const Borrow& borrow) {
-	borrow.out(out);
+ostream& operator<<(ostream& out, const Borrow& b) {
+	b.out(out);
 	return out;
 }

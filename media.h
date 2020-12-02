@@ -7,6 +7,7 @@
 #include <fstream>
 #include <ostream>
 #include <sstream>
+
 using namespace std;
 
 const int DEFAULT_STOCK = 0;
@@ -64,4 +65,5 @@ protected:
     virtual void print(ostream & out) const = 0;
 };
 
+#include "media_movie.h"
 #endif //!_MEDIA_

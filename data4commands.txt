@@ -2,8 +2,6 @@ I
 H 1000
 H 5000
 H 8000
-B -8000 D F You've Got Mail, 1998
-B C D F You've Got Mail, 1998
 B 8000 D F You've Got Mail, 1998
 B 1000 D D Barry Levinson, Good Morning Vietnam,
 B 1000 D C 5 1940 Katherine Hepburn

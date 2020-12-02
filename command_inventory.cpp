@@ -7,10 +7,12 @@ Inventory::Inventory() {
 Inventory::~Inventory() {
 }
 
-void Inventory::processInventory(MediaCollection&) {
+void Inventory::processInventory(MediaCollection & meColl) {
+    cout << "Inventory:" << endl;
+    meColl.display();
 }
 
-ostream& operator<<(ostream& out, const Inventory& command) {
+ostream& operator<<(ostream & out, const Inventory & command) {
     out << command.type;
     return out;
 }

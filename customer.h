@@ -4,17 +4,18 @@
 #include <string>
 #include <vector>
 #include <fstream>
-#include <stdio.h>
+#include <list>
+#include <algorithm>
 #include "media.h"
-
 using namespace std;
-
-class Command;
 
 const int MINID = 1;                    // smallest id
 const int MAXID = 9999;                 // max id
 const int DEFAULT_ID = 0;               // default id
 const string DEFAULT_NAME = "DEFAULT";  // default name
+
+//class Command
+class Command;
 
 // add comments
 class Customer {
@@ -52,7 +53,7 @@ class Customer {
         // function
         void borrowMedia(Media * media);        // customer has borrowed media
         bool returnMedia(Media * target);       // customer has returned media
-        void addHistory(Command * command);     // add commands history
+        void addHistory(Command * command);       // add commands history
 
         // operator in case needed
         bool operator<(const Customer&) const;
@@ -66,7 +67,7 @@ class Customer {
         int id;                     // customer ID
         string firstName;           // customer first name
         string lastName;            // customer last name
-        vector<Command*> history;   // customer history borrow or return
         vector<Media*> borrowing;   // customer media borrow currently
+        vector<Command*> history;   // customer history borrow or return
 };
 #endif // !_CUSTOMER_

@@ -125,10 +125,9 @@ bool MediaCollection::removeMovie(const Media& target) {
 }
 
 void MediaCollection::display() const {
-    cout << "Movie type" << endl;
     movieCollection.at(COMEDY).display();
-    movieCollection.at(CLASSIC).display();
     movieCollection.at(DRAMA).display();
+    movieCollection.at(CLASSIC).display();
 }
 
 int MediaCollection::getTotalMedia() const {

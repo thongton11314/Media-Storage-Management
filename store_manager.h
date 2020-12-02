@@ -2,10 +2,10 @@
 #define _THEATER_MANAGER_
 #include <fstream>
 #include <iostream>
-#include "command.h"
 #include "customers_collection.h"
 #include "media_collection.h"
 #include "media_factory.h"
+#include "command.h"
 #include "command_factory.h"
 using namespace std;
 
