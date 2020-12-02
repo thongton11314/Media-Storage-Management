@@ -104,7 +104,8 @@ void StoreManager::processCommands(ifstream & infile) {
         if (command != nullptr) {
 
             // process comand and delete if fail to process
-            // if succesful, return or borrow commands will be assign to customer
+            // if succesful
+            // return or borrow commands will be assign to customer
             if (!command->process(mediaCollection, customerCollection)) {
                 delete command;
                 command = nullptr;
