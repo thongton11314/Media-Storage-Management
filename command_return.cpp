@@ -1,5 +1,6 @@
 #include "command_return.h"
-
+//----------------------------------------------------------------------------
+// constructor
 Return::Return() {
 	this->type = BORROW;
 	this->customerID = DEFAULT_ID;
@@ -7,11 +8,13 @@ Return::Return() {
 	this->movieType = DEFAULT_TYPE;
 	this->media = nullptr;
 }
-
+//----------------------------------------------------------------------------
+// destructor
 Return::~Return() {
 	delete media;
 }
-
+//----------------------------------------------------------------------------
+//setData
 bool Return::setData(ifstream& infile) {
 
 	// create media, and some temporary data
@@ -155,7 +158,8 @@ bool Return::setData(ifstream& infile) {
 	bool isValid = this->media != nullptr ? isValid = true : isValid = false;
 	return isValid;
 }
-
+//----------------------------------------------------------------------------
+// processReturn
 bool Return::processReturn(MediaCollection & meColl, CustomerCollection & cusColl) {
 	
 	Customer* cusRetriever;
@@ -209,12 +213,12 @@ bool Return::processReturn(MediaCollection & meColl, CustomerCollection & cusCol
 	// fail return
 	return false;
 }
-
+//----------------------------------------------------------------------------
 ostream& Return::out(ostream& out) const {
 	out << this->fullCommand;
 	return out;
 }
-
+//----------------------------------------------------------------------------
 ostream& operator<<(ostream& out, const Return& r) {
 	r.out(out);
 	return out;
