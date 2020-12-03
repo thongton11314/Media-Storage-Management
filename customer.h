@@ -17,7 +17,7 @@ const string DEFAULT_NAME = "DEFAULT";  // default name
 //class Command
 class Command;
 
-// Class Hashtable:
+// Class Customer:
 //  Description:
 //   - This class create a a new list of customers into the system
 //  Implementation:
