@@ -2,6 +2,7 @@
 
 MediaCollection::MediaCollection() {
 
+    // nested specific type of movie into movie collection
     // set comedy type
     movieCollection.insert(
         pair<MovieType, BSTree<Media>>(COMEDY, comedyCollection)
@@ -16,15 +17,18 @@ MediaCollection::MediaCollection() {
     movieCollection.insert(
         pair<MovieType, BSTree<Media>>(DRAMA, dramaCollection)
     );
+    // further nested specific type of media go here...
 }
 
-MediaCollection::~MediaCollection() {}
+MediaCollection::~MediaCollection() {
+}
 
 bool MediaCollection::insert(Media* media) {
 
-    // check media type
+    // check movie type
     if (media->getMediaType() == MOVIE)
         return insertMovie(media);
+    // further extention type go here...
 
     // media type is not exist
     return false;
@@ -60,11 +64,10 @@ bool MediaCollection::retrieve(const Media& target, Media*& retriever) {
     if (target.getMediaType() == MOVIE) {
         return retrieveMovie(target, retriever);
     }
+    // further extention type go here...
 
     // media type is not exist
-    else {
-        return false;
-    }
+    return false;
 }
 
 bool MediaCollection::retrieveMovie(const Media& target, Media*& retriever) {
@@ -96,6 +99,7 @@ bool MediaCollection::remove(const Media& target) {
     // check media type
     if (target.getMediaType() == MOVIE)
         return removeMovie(target);
+    // further extention type go here...
 
     // media type is not exist
     return false;
