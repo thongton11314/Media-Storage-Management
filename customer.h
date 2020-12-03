@@ -17,7 +17,12 @@ const string DEFAULT_NAME = "DEFAULT";  // default name
 //class Command
 class Command;
 
-// add comments
+// Class Hashtable:
+//  Description:
+//   - This class create a a new list of customers into the system
+//  Implementation:
+//   - Create customers:
+//     - create, display and modify customers information in the system
 class Customer {
 
     // display customer information
