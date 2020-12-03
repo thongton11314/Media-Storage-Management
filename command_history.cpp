@@ -1,13 +1,16 @@
 #include "command_history.h"
-
+//----------------------------------------------------------------------------
+// constructor
 History::History() {
 	this->type = HISTORY;
 	this->customerID = DEFAULT_ID;
 }
-
+//----------------------------------------------------------------------------
+// destructor
 History::~History() {
 }
-
+//----------------------------------------------------------------------------
+// setData
 bool History::setData(ifstream& infile) {
 	infile.ignore();
 	infile >> this->customerID;
@@ -19,7 +22,9 @@ bool History::setData(ifstream& infile) {
 	}
 	return true;
 }
-
+//----------------------------------------------------------------------------
+//processHistory
+// creates the history command 
 bool History::processHistory(CustomerCollection& cusColl) {
 	Customer* cusRetriver = nullptr;
 
@@ -52,12 +57,12 @@ bool History::processHistory(CustomerCollection& cusColl) {
 	}
 	return false;
 }
-
+//----------------------------------------------------------------------------
 ostream& History::out(ostream& out) const {
 	out << this->type << " " << this->getCustomerID();
 	return out;
 }
-
+//----------------------------------------------------------------------------
 ostream& operator<<(ostream& out, const History& command) {
 	out << command.type << " " << command.getCustomerID();
 	return out;
