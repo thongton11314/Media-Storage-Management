@@ -11,3 +11,8 @@
     
 - To check memory leak, we use the command line at the Linux terminal which “Valgrind ./a.out”
     - The memory leak was carefully detected and manageable. There is no memory leak in this project
+    
+- To sucessfully run the program, some .txt files need to included. The format has to be corrected form
+    - data4commands.txt, this file contain all command to be executed
+    - data4customers.txt, this file contain all customer information
+    - data4movies.txt, this files contain all movies information
