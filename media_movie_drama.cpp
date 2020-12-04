@@ -1,5 +1,7 @@
 #include "media_movie_drama.h"
-
+//----------------------------------------------------------------------------
+// Drama
+// Default constructor
 Drama::Drama() {
     this->type = DRAMA;
     this->stock = DEFAULT_STOCK;
@@ -8,6 +10,9 @@ Drama::Drama() {
     this->year = DEFAULT_NUM;
 }
 
+//----------------------------------------------------------------------------
+// Drama
+// Copy constructor
 Drama::Drama(const Drama & other) {
     this->type = other.type;
     this->stock = other.stock;
@@ -16,8 +21,14 @@ Drama::Drama(const Drama & other) {
     this->year = other.year;
 }
 
+//----------------------------------------------------------------------------
+// Drama
+// Destructor
 Drama::~Drama() {}
 
+//----------------------------------------------------------------------------
+// setData
+// Read and store the movie in the system from the file
 bool Drama::setData(ifstream & infile) {
 
     // set up stock
@@ -43,14 +54,23 @@ bool Drama::setData(ifstream & infile) {
     return true;
 }
 
+//----------------------------------------------------------------------------
+// getMovieType
+// return the movie type
 MovieType Drama::getMovieType() const {
     return this->type;
 }
 
+//----------------------------------------------------------------------------
+// getHashKey
+// return the director and the title of the movie
 string Drama::getHashKey() const {
     return this->director + " " + this->title;
 }
 
+//----------------------------------------------------------------------------
+// operator<
+// Movie comparison operator
 bool Drama::operator<(const Media & other) const {    
 
     // compare director first
@@ -73,6 +93,9 @@ bool Drama::operator<(const Media & other) const {
     return false;
 }
 
+//----------------------------------------------------------------------------
+// operator<=
+// Movie comparison operator
 bool Drama::operator<=(const Media & other) const {
 
     // compare director first
@@ -91,6 +114,9 @@ bool Drama::operator<=(const Media & other) const {
     return true;
 }
 
+//----------------------------------------------------------------------------
+// operator>
+// Movie comparison operator
 bool Drama::operator>(const Media & other) const {
 
     // compare director first
@@ -113,6 +139,9 @@ bool Drama::operator>(const Media & other) const {
     return false;
 }
 
+//----------------------------------------------------------------------------
+// operator>=
+// Movie comparison operator
 bool Drama::operator>=(const Media & other) const {
 
     // compare director first
@@ -131,6 +160,9 @@ bool Drama::operator>=(const Media & other) const {
     return true;
 }
 
+//----------------------------------------------------------------------------
+// operator==
+// Movie comparison operator
 bool Drama::operator==(const Media & other) const {
     if ((this->getDirector().compare(dynamic_cast<const Drama&>(other).getDirector()
     ) == 0)
@@ -142,6 +174,9 @@ bool Drama::operator==(const Media & other) const {
     return false;
 }
 
+//----------------------------------------------------------------------------
+// operator=
+// Movie comparison operator
 Media & Drama::operator=(const Media& other) {
     this->type = dynamic_cast<const Drama&>(other).getMovieType();
     this->stock = dynamic_cast<const Drama&>(other).getStock();
@@ -151,10 +186,16 @@ Media & Drama::operator=(const Media& other) {
     return *this;
 }
 
+//----------------------------------------------------------------------------
+// operator!=
+// Movie comparison operator
 bool Drama::operator!=(const Media & other) const {
     return !(*this == dynamic_cast<const Drama&>(other));
 }
 
+//----------------------------------------------------------------------------
+// print
+// Print out the movie information
 void Drama::print(ostream & stream) const {
     cout << this->getMovieType() << ", "
     << this->getStock() << ", "
@@ -163,6 +204,9 @@ void Drama::print(ostream & stream) const {
     << this->getYear();
 }
 
+//----------------------------------------------------------------------------
+// operator<<
+// print out to the system operator
 ostream & operator<<(ostream & out, const Drama & movie) {
     movie.print(out);
     return out;
