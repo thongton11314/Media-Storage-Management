@@ -17,9 +17,9 @@
 //   -- If the passed in node is already in tree, it will be deleted
 //
 // Implementation:
-//   -- Function insert, retrieve, display, makeEmpty will need 
+//   -- Function insert, retrieve, remove , display, makeEmpty will need 
 //      sub-function to help it traverse the tree recursively, insertHelper
-//      retrieveHelper, displayHelper, emptyHelper will be called.
+//      retrieveHelper, removeHelper, displayHelper, emptyHelper will be called.
 //---------------------------------------------------------------------------
 
 template <typename T>
@@ -58,7 +58,10 @@ protected:
     // second is for target
     // third parameter is pointer point to target
     bool retrieveHelper(Node*, const T &, T*&) const;
-
+    
+    // use for traversing recursive tree, then delete the node
+    // first parameter is root
+    // second is for target
     bool removeHelper(Node *& current, const T& key);
 
     // use for traverse recursively tree, then print out data
@@ -68,7 +71,7 @@ protected:
     void makeEmptyHelper(Node *&);
 };
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // constructor
 // initialize the root
 template<typename T>
@@ -77,7 +80,7 @@ BSTree<T>::BSTree() {
     totalNode = 0;
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // deconstructor
 // call makeEmpty to delete every node
 template<typename T>
@@ -85,7 +88,7 @@ BSTree<T>::~BSTree() {
     makeEmpty();
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // insert
 // call the insertHelper to traverse recursively
 // the passed in node will be taken and insert in tree
@@ -114,7 +117,7 @@ bool BSTree<T>::insert(T * newData) {
     }
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // insertHelper
 // traverse recursively the tree
 // this function is sub-function of insert
@@ -144,7 +147,7 @@ bool BSTree<T>::insertHelper(T * newData, Node *& current) {
     }
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // retrieve
 // retrieve the node that match with target
 // call the retrieveHelper to traverse recursively
@@ -157,7 +160,7 @@ bool BSTree<T>::retrieve(const T & target, T *& retriever) const {
     return retrieveHelper(root, target, retriever);
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // retrieveHelper
 // recursively traverse the tree
 // this function is sub-function of retrieve
@@ -190,12 +193,13 @@ bool BSTree<T>::retrieveHelper(Node* current,
         return true;
     }
 }
-//----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
 // remove
 // remove the node that match with target
 // call the removeHelper to traverse recursively
-// return true if removed successfully
-//        false target not in tree
+// return true if remove successfully
+//        false not remove
 template<typename T>
 bool BSTree<T>::remove(const T& target) {
     if (this->root == nullptr) {
@@ -209,12 +213,13 @@ bool BSTree<T>::remove(const T& target) {
         return false;
     }
 }
-//----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
 // removeHelper
 // recursively traverse the tree
 // this function is sub-function of remove
-// return true if found the target
-//        false if not found the target
+// return true if delete the target
+//        false if not delete the target
 template<typename T>
 bool BSTree<T>::removeHelper(Node *& current, const T& target) {
 
@@ -250,8 +255,6 @@ bool BSTree<T>::removeHelper(Node *& current, const T& target) {
             while (temp->left != nullptr) {
                 temp = temp->left;
             }
-
-            // something wrong here, it doesn't convert data, maybe because of factory
             *current->data = *temp->data;
             return removeHelper(current->right, *temp->data);            
         }
@@ -269,7 +272,7 @@ bool BSTree<T>::removeHelper(Node *& current, const T& target) {
     }
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // display
 // display the node of tree from left to right
 // call the displayHelper to perform traverse recursively
@@ -298,7 +301,7 @@ void BSTree<T>::displayHelper(Node * current) const {
     }
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // makeEmpty
 // delete every node from the tree
 // this function also will be called when deconstructor is called
@@ -317,7 +320,7 @@ void BSTree<T>::makeEmpty() {
     root = nullptr;
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // makeEmptyHelper
 // traverse recursively the tree
 // this function is sub-function of makeEmpty
@@ -335,7 +338,7 @@ void BSTree<T>::makeEmptyHelper(Node *& current) {
     }
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // isEmpty
 // check tree is empty or not
 template<typename T>
