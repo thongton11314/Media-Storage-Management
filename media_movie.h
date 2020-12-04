@@ -6,7 +6,13 @@
 #define _MOVIE_
 #include "media.h"
 
-// add comments here
+// Class Movie:
+//  Description:
+//   - This class controll and modify movies in the system
+//   - parent function of comedy,drama and classic
+//  Implementation:
+//   - Create movie:
+//     - get and set movie information in the system
 class Movie : public Media {
     
     // use to use << opertor
