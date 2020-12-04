@@ -5,6 +5,7 @@
   + UML Designer
   
 - Vincent Le: 
+  + Content creator for UML
   + Developer
   + UML Designer
 
