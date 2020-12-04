@@ -5,6 +5,12 @@
 #define _DRAMA_
 #include "media_movie.h"
 
+// Class Drama:
+//  Description:
+//   - This class create a drama type movie
+//  Implementation:
+//   - Create Drama:
+//     - Create and set movie name and type related to the file
 class Drama : public Movie {
 
     friend ostream& operator<<(ostream &, const Drama &);
