@@ -5,6 +5,12 @@
 #define _CLASSIC_
 #include "media_movie.h"
 
+// Class Classic:
+//  Description: 
+//   - This class create a classic type movie
+//  Implementation:
+//   - Create classic:
+//     - Create and set the movie name and type related to the file
 class Classic : public Movie {
 
     friend ostream& operator<<(ostream &, const Classic &);
