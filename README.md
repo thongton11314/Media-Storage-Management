@@ -5,7 +5,8 @@
 - To complete this project, we use the g++ compiler. 
 
 - To execute this program, we use command line at Linux terminal which “g++ -std=c++11 *.h *.cpp”
-    - Compile all header files which:
+    - Compile all header files which: bst.h, command_borrow.h, command_history.h, command_return.h, customers_collection.h, media.h, media_factory.h, media_movie_classic.h, media_movie_drama.h, store_manager.h, command.h, command_factory.h, command_inventory.h, customer.h, hashtable.h, media_collection.h, media_movie.h, media_movie_comedy.h, media_movie_factory.h
+        
     - Compile all implementation files which:
     
 - To check memory leak, we use the command line at the Linux terminal which “Valgrind ./a.out”
