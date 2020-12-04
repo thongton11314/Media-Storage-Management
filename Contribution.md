@@ -1,16 +1,17 @@
 # Role
 - Duy Vu:
-  + UML Designer
-  + Content creator, mostly writer for UML
+  + Content creator for UML
   + Developer
+  + UML Designer
   
 - Vincent Le: 
-  + UML Designer
   + Developer
+  + UML Designer
 
-- Thong Ton: 
-  + UML Designer
+- Thong Ton:
   + Developer
+  + Document project
+  + UML Designer
 
 # Conduct Designing UML
 - Duy Vu
