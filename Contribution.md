@@ -12,20 +12,20 @@
   + UML Designer
   + Developer
 
-# UML Design
+# Conduct Designing UML
 - Duy Vu
 - Vincent Le
 - Thong Ton
 
-# Code Conduct
+# Conduct 
 - Duy Vu
 - Vincent Le
 - Thong Ton
 
-# Tester
+# Conduct Testing
 - Thong Ton
 
-# Classes work On
+# Conduct classes
 - Duy Vu:
   + main
   + command_factory
