@@ -1,4 +1,5 @@
 # Build and Run the Code
+
 - To build this project, we use the programming language C++ version 11
     - The code was written in Visual Studio and Visual Studio Code
     
@@ -9,10 +10,15 @@
         
     - Compile all implementation files which: command.cpp, command_factory.cpp, command_inventory.cpp, customer.cpp, main.cpp, media_collection.cpp, media_movie.cpp          media_movie_comedy.cpp, media_movie_factory.cpp, command_borrow.cpp, command_history.cpp, command_return.cpp, customers_collection.cpp, media.cpp, media_factory.cpp, media_movie_classic.cpp, media_movie_drama.cpp, store_manager.cpp
     
-- To check memory leak, we use the command line at the Linux terminal which “Valgrind ./a.out”
+- To check memory leak, we use the command line at the Linux terminal which “valgrind ./a.out”
     - The memory leak was carefully detected and manageable. There is no memory leak in this project
     
-- To sucessfully run the program, some .txt files need to included. The format has to be corrected form
+# How the Application Process
+
+- To sucessfully run the program, some .txt files need to be included as corrected form
     - data4commands.txt, this file contain all command to be executed
     - data4customers.txt, this file contain all customer information
     - data4movies.txt, this files contain all movies information
+ 
+- The application will at first build the customer by reading each customer from "data4customers.txt". Secondly, building the movies by reading each movies from "data4movies.txt"
+. Finally, process commands by reading each command from "data4commands.txt".
