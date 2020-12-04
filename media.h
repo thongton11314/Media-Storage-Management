@@ -24,6 +24,12 @@ const char DRAMA = 'D';
 typedef char MediaType;
 typedef char MovieType;
 
+// Class Media:
+//  Description:
+//   - A parent class of movie
+//  Implementation:
+//   - Create media:
+//     - Control and modify the movie section
 class Media {
     
     // use to use << opertor
