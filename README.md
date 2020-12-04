@@ -1,6 +1,4 @@
-# assignment4_implementation
-
-Build and Run the Code:
+# Build and Run the Code
 - To build this project, we use the programming language C++ version 11
     - The code was written in Visual Studio and Visual Studio Code
     
