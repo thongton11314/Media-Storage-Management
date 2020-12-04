@@ -16,9 +16,9 @@
 # How the Application Process
 
 - To sucessfully run the program, some .txt files need to be included as corrected form
-    - data4commands.txt, this file contain all command to be executed
     - data4customers.txt, this file contain all customer information
     - data4movies.txt, this files contain all movies information
+    - data4commands.txt, this file contain all command to be executed
  
 - The application will at first build the customer by reading each customer from "data4customers.txt". Secondly, building the movies by reading each movies from "data4movies.txt"
 . Finally, process commands by reading each command from "data4commands.txt".
