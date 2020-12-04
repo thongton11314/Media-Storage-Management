@@ -1,5 +1,8 @@
 #include "media_movie_classic.h"
 
+//----------------------------------------------------------------------------
+// Classic
+// Default constructor
 Classic::Classic() {
     this->type = CLASSIC;
     this->stock = DEFAULT_STOCK;
@@ -11,6 +14,9 @@ Classic::Classic() {
     this->year = DEFAULT_NUM;
 }
 
+//----------------------------------------------------------------------------
+// Classic
+// Copy constructor
 Classic::Classic(const Classic & other) {
     this->type = other.type;
     this->stock = other.stock;
@@ -22,8 +28,14 @@ Classic::Classic(const Classic & other) {
     this->year = other.year;
 }
 
+//----------------------------------------------------------------------------
+// Classic
+// Destructor
 Classic::~Classic() {}
 
+//----------------------------------------------------------------------------
+// setData
+// Read and store the movie in the system from the file
 bool Classic::setData(ifstream & infile) {
 
     // set up stock
@@ -56,34 +68,58 @@ bool Classic::setData(ifstream & infile) {
     return true;
 }
 
+//----------------------------------------------------------------------------
+// setMajorActorFirst
+// Set the major actor first name for the movie
 void Classic::setMajorActorFirst(string name) {
     this->majorActorFirst = name;
 }
 
+//----------------------------------------------------------------------------
+// setMajorActorLast
+// Set the major actor last name for the movie
 void Classic::setMajorActorLast(string name) {
     this->majorActorLast = name;
 }
 
+//----------------------------------------------------------------------------
+// setMonth
+// Set the month for the movie
 void Classic::setMonth(int month) {
     this->month = month;
 }
 
+//----------------------------------------------------------------------------
+// getMonth
+// Return the month of the movie
 int Classic::getMonth() const {
     return this->month;
 }
 
+//----------------------------------------------------------------------------
+// getMajorActorFirst
+// Return the major actor first name
 string Classic::getMajorActorFirst() const {
     return this->majorActorFirst;
 }
 
+//----------------------------------------------------------------------------
+// getMajorActorLast
+// Return the major actor last name
 string Classic::getMajorActorLast() const {
     return this->majorActorLast;
 }
 
+//----------------------------------------------------------------------------
+// getMovieType
+// Return the movie type
 MovieType Classic::getMovieType() const {
     return this->type;
 }
 
+//----------------------------------------------------------------------------
+// getHashKey
+// Return the date and the major actor name from the movie
 string Classic::getHashKey() const {
     return to_string(month)
         + " " + to_string(year)
@@ -91,6 +127,9 @@ string Classic::getHashKey() const {
         + " " + majorActorLast;
 }
 
+//----------------------------------------------------------------------------
+// operator<
+// Movie comparison operator
 // arithmetic operator, sort by release date and major actor
 bool Classic::operator<(const Media & other) const {
     if (this->getYear() != dynamic_cast<const Classic&>(other).getYear())
@@ -104,6 +143,9 @@ bool Classic::operator<(const Media & other) const {
     ) < 0;
 }
 
+//----------------------------------------------------------------------------
+// operator<=
+// Movie comparison operator
 // arithmetic operator, sort by release date and major actor
 bool Classic::operator<=(const Media & other) const {
     if (this->getYear() > dynamic_cast<const Classic&>(other).getYear())
@@ -117,6 +159,9 @@ bool Classic::operator<=(const Media & other) const {
     ) <= 0;
 }
 
+//----------------------------------------------------------------------------
+// operator>
+// Movie comparison operator
 // arithmetic operator, sort by release date and major actor
 bool Classic::operator>(const Media & other) const {
     if (this->getYear() != dynamic_cast<const Classic&>(other).getYear())
@@ -130,6 +175,9 @@ bool Classic::operator>(const Media & other) const {
     ) > 0;
 }
 
+//----------------------------------------------------------------------------
+// operator>=
+// Movie comparison operator
 // arithmetic operator, sort by release date and major actor
 bool Classic::operator>=(const Media & other) const {
     if (this->getYear() < dynamic_cast<const Classic&>(other).getYear())
@@ -143,6 +191,9 @@ bool Classic::operator>=(const Media & other) const {
     ) >= 0;
 }
 
+//----------------------------------------------------------------------------
+// operator==
+// Movie comparison operator
 // arithmetic operator, sort by release date and major actor
 bool Classic::operator==(const Media & other) const {
 
@@ -154,6 +205,9 @@ bool Classic::operator==(const Media & other) const {
         ) == 0));
 }
 
+//----------------------------------------------------------------------------
+// operator=
+// Movie comparison operator
 Media & Classic::operator=(const Media& other) {
     this->type = dynamic_cast<const Classic&>(other).getMovieType();
     this->stock = dynamic_cast<const Classic&>(other).getStock();
@@ -166,10 +220,16 @@ Media & Classic::operator=(const Media& other) {
     return *this;
 }
 
+//----------------------------------------------------------------------------
+// operator!=
+// Movie comparison operator
 bool Classic::operator!=(const Media & other) const {
     return !(*this == dynamic_cast<const Classic&>(other));
 }
 
+//----------------------------------------------------------------------------
+// print
+// print out the movie information to the system
 void Classic::print(ostream & stream) const {
     cout << this->getMovieType() << ", "
     << this->getStock() << ", "
@@ -180,6 +240,9 @@ void Classic::print(ostream & stream) const {
     << this->getYear();
 }
 
+//----------------------------------------------------------------------------
+// operator<<
+// print out to the system operator
 ostream & operator<<(ostream & out, const Classic & movie) {
     movie.print(out);
     return out;
