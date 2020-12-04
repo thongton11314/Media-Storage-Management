@@ -7,8 +7,12 @@
 #include "bst.h"
 
 using namespace std;
-
-// add comments here
+// Class MediaCollection:
+//  Description:
+//   - This class control and modify what is in the media
+//  Implementation:
+//   - Create Media:
+//     - Add a new type of media to the collection 
 class MediaCollection {
 public:
     MediaCollection();
