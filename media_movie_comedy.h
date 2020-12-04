@@ -5,6 +5,12 @@
 #define _COMEDY_
 #include "media_movie.h"
 
+// Class Comedy:
+//  Description:
+//   - This class create a comedy type movie
+//  Implementation:
+//   - Create comedy:
+//     - Create and set movie information related to the file
 class Comedy : public Movie {
 
     friend ostream& operator<<(ostream &, const Comedy &);
