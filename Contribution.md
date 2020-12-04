@@ -1,5 +1,4 @@
 # Role
-
 - Duy Vu:
   + UML Designer
   + Content creator, mostly writer for UML
@@ -27,7 +26,6 @@
 - Thong Ton
 
 # Classes work On
-
 - Duy Vu:
   + main
   + command_factory
