@@ -24,7 +24,7 @@
 - Vincent Le
 - Thong Ton
 
-# Conduct classes
+# Conduct implementation for classes
 - Duy Vu:
   + main
   + command_factory
