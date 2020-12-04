@@ -9,7 +9,13 @@ using namespace std;
 
 const int TABLE_SIZE = 97;
 
-// add comment here
+
+// Class Hashtable:
+//  Description:
+//   - This class create a hashtable to store key and value within the table
+//  Implementation:
+//   - Create Hashtable:
+//     - Output all Comedy movies, then all Dramas, then all Classics.
 template <typename Key, typename Val>
 class Hashtable {
 public:
@@ -33,7 +39,9 @@ private:
 
 // implementation is bellow
 
-// constructor
+//----------------------------------------------------------------------------
+// Hashtable
+// Default Constructor
 template <typename Key, typename Val>
 Hashtable<Key, Val>::Hashtable() {
 
@@ -43,18 +51,24 @@ Hashtable<Key, Val>::Hashtable() {
     }
 }
 
-// copy constructor
+//----------------------------------------------------------------------------
+// Hashtable
+// Copy Constructor
 template <typename Key, typename Val>
 Hashtable<Key, Val>::Hashtable(const Hashtable & other) {
     
 }
 
-// dafult constructor
+//----------------------------------------------------------------------------
+// Hashtable
+// Destructor
 template <typename Key, typename Val>
 Hashtable<Key, Val>::~Hashtable() {
     makeEmpty();
 }
 
+//----------------------------------------------------------------------------
+// insertKeyValue
 // insert object which is val into bucket
 template <typename Key, typename Val>
 bool Hashtable<Key, Val>::insertKeyValue(Key key, Val * val) {
@@ -82,6 +96,9 @@ bool Hashtable<Key, Val>::insertKeyValue(Key key, Val * val) {
     return false;
 }
 
+//----------------------------------------------------------------------------
+// retrieveValue
+// retrieve the value of the key from the table
 template <typename Key, typename Val>
 bool Hashtable<Key, Val>::retrieveValue(Key key, Val *& retriever) const {
     // retrieve object by key from bucket, if collision look into bst
@@ -108,6 +125,9 @@ bool Hashtable<Key, Val>::retrieveValue(Key key, Val *& retriever) const {
     return false; // need to be coded
 }
 
+//----------------------------------------------------------------------------
+// getValue
+// get the value of the key
 template <typename Key, typename Val>
 const Val * Hashtable<Key, Val>::getValue(Key key) const {
 
@@ -136,6 +156,9 @@ const Val * Hashtable<Key, Val>::getValue(Key key) const {
     return nullptr;
 }
 
+//----------------------------------------------------------------------------
+// removeValue
+// remove the value of the key 
 template <typename Key, typename Val>
 bool Hashtable<Key, Val>::removeValue(Key key) {
     // remove object in the bucket, if collision look in to bst
@@ -159,6 +182,9 @@ bool Hashtable<Key, Val>::removeValue(Key key) {
     }
 }
 
+//----------------------------------------------------------------------------
+// display
+// display the hashtable 
 template<typename Key, typename Val>
 void Hashtable<Key, Val>::display() const {
     for (int i = 0; i < TABLE_SIZE; i++) {
@@ -168,6 +194,9 @@ void Hashtable<Key, Val>::display() const {
     }
 }
 
+//----------------------------------------------------------------------------
+// makeEmpty
+// clear the hashtable 
 template <typename Key, typename Val>
 void Hashtable<Key, Val>::makeEmpty() {
     
