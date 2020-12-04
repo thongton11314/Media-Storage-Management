@@ -1,7 +1,34 @@
+# Role
+
+- Duy Vu:
+  + UML Designer
+  + Content creator, mostly writer for UML
+  + Developer
+  
+- Vincent Le: 
+  + UML Designer
+  + Developer
+
+- Thong Ton: 
+  + UML Designer
+  + Developer
+
+# UML Design
+- Duy Vu
+- Vincent Le
+- Thong Ton
+
+# Code Conduct
+- Duy Vu
+- Vincent Le
+- Thong Ton
+
+# Tester
+- Thong Ton
 
 # Classes work On
 
-Duy Vu:
+- Duy Vu:
   + main
   + command_factory
   + command
@@ -10,12 +37,12 @@ Duy Vu:
   + command_history
   + command_inventory
   
-Vincent Le:
+- Vincent Le:
   + hashtable
   + customer
   + customers_collection
   
-Thong Ton:
+- Thong Ton:
   + bst
   + store_manager
   + media_factory
