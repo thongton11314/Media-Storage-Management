@@ -17,12 +17,9 @@
 - Vincent Le
 - Thong Ton
 
-# Conduct 
+# Conduct Code
 - Duy Vu
 - Vincent Le
-- Thong Ton
-
-# Conduct Testing
 - Thong Ton
 
 # Conduct classes
@@ -50,3 +47,6 @@
   + media_movie_comedy
   + media_movie_classis
   + media_movie_drama
+  
+  # Conduct Testing
+- Thong Ton
