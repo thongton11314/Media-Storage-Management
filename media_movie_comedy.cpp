@@ -1,5 +1,8 @@
 #include "media_movie_comedy.h"
 
+//----------------------------------------------------------------------------
+// Comedy
+// Default Constructor
 Comedy::Comedy() {
     this->type = COMEDY;
     this->stock = DEFAULT_STOCK;
@@ -8,6 +11,9 @@ Comedy::Comedy() {
     this->year = DEFAULT_NUM;
 }
 
+//----------------------------------------------------------------------------
+// Comedy
+// Copy constructor
 Comedy::Comedy(const Comedy & other) {
     this->type = other.type;
     this->stock = other.stock;
@@ -16,8 +22,14 @@ Comedy::Comedy(const Comedy & other) {
     this->year = other.year;
 }
 
+//----------------------------------------------------------------------------
+// Comedy
+// Destructor
 Comedy::~Comedy() {}
 
+//----------------------------------------------------------------------------
+// setData
+// Read and store the movie in the system from the file
 bool Comedy::setData(ifstream& infile) {
 
     // set up stock
@@ -43,14 +55,23 @@ bool Comedy::setData(ifstream& infile) {
     return true;
 }
 
+//----------------------------------------------------------------------------
+// getMovieType
+// Return the movie type
 MovieType Comedy::getMovieType() const {
     return this->type;
 }
 
+//----------------------------------------------------------------------------
+// getHashKey
+// Return the title and the year of the movie
 string Comedy::getHashKey() const {
     return this->getTitle() + " " + to_string(this->getYear());
 }
 
+//----------------------------------------------------------------------------
+// operator<
+// Movie comparison operator
 bool Comedy::operator<(const Media & other) const {
 
     // compare title first
@@ -65,6 +86,9 @@ bool Comedy::operator<(const Media & other) const {
     return this->getYear() < dynamic_cast<const Comedy&>(other).getYear();
 }
 
+//----------------------------------------------------------------------------
+// operator<=
+// Movie comparison operator
 bool Comedy::operator<=(const Media & other) const {
 
     // compare title first
@@ -77,6 +101,9 @@ bool Comedy::operator<=(const Media & other) const {
     return this->getYear() <= dynamic_cast<const Comedy&>(other).getYear();
 }
 
+//----------------------------------------------------------------------------
+// operator>
+// Movie comparison operator
 bool Comedy::operator>(const Media & other) const {
 
     // compare title first
@@ -91,6 +118,9 @@ bool Comedy::operator>(const Media & other) const {
     return this->getYear() > dynamic_cast<const Comedy&>(other).getYear();
 }
 
+//----------------------------------------------------------------------------
+// operator>=
+// Movie comparison operator
 bool Comedy::operator>=(const Media & other) const {
 
     // compare title first
@@ -103,6 +133,9 @@ bool Comedy::operator>=(const Media & other) const {
     return this->getYear() >= dynamic_cast<const Comedy&>(other).getYear();
 }
 
+//----------------------------------------------------------------------------
+// operator==
+// Movie comparison operator
 bool Comedy::operator==(const Media & other) const {
     return (this->getTitle().compare(
         dynamic_cast<const Comedy&>(other).getTitle()) == 0)
@@ -113,6 +146,9 @@ bool Comedy::operator!=(const Media & other) const {
     return !(*this == dynamic_cast<const Comedy&>(other));
 }
 
+//----------------------------------------------------------------------------
+// operator=
+// Movie comparison operator
 Media & Comedy::operator=(const Media& other) {
     this->type = dynamic_cast<const Comedy&>(other).getMovieType();
     this->stock = dynamic_cast<const Comedy&>(other).getStock();
@@ -122,6 +158,9 @@ Media & Comedy::operator=(const Media& other) {
     return *this;
 }
 
+//----------------------------------------------------------------------------
+// print
+// print out the movie information
 void Comedy::print(ostream & stream) const {
     cout << this->getMovieType() << ", "
     << this->getStock() << ", "
@@ -130,6 +169,9 @@ void Comedy::print(ostream & stream) const {
     << this->getYear();
 }
 
+//----------------------------------------------------------------------------
+// operator<<
+// print out to the system operator
 ostream & operator<<(ostream & out, const Comedy & movie) {
     movie.print(out);
     return out;
