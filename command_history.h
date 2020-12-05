@@ -4,7 +4,12 @@
 #define _COMMAND_HISTORY_
 #include "command.h"
 
-// add comments here
+// Class History:
+//  Description:
+//   - Children class of command
+//  Implementation:
+//   - Create history:
+//     - Create a history that store all the request from customer.
 class History : public Command {
 
     // print out full command
