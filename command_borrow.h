@@ -4,7 +4,12 @@
 #define _COMMAND_BORROW_
 #include "command.h"
 
-// add comments here
+// Class Borrow:
+//  Description:
+//   - The children of command
+//  Implementation:
+//   - Create borrow:
+//     - Create a borrowing request for the customer.
 class Borrow : public Command {
 
     // print out full command
