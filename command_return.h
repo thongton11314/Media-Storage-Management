@@ -4,7 +4,12 @@
 #define _COMMAND_RETURN_
 #include "command.h"
 
-// add comments here
+// Class Return:
+//  Description:
+//   - Children class of command
+//  Implementation:
+//   - Create return:
+//     - Create a return request for the customer.
 class Return : public Command {
 
     // print out full command
