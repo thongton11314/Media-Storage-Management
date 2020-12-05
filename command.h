@@ -12,7 +12,12 @@ const string DEFAULT_FULLCOMMAND = "DEFAULT";
 
 typedef char CommandType;
 
-// add comments here a
+// Class Command:
+//  Description:
+//   - This class create command based on the customer requested
+//  Implementation:
+//   - Create command:
+//     - Create a command for customer based on their request.
 class Command {
 
     // print out fulll command
