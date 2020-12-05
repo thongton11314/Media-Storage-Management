@@ -4,7 +4,12 @@
 #include "customer.h"
 #include "hashtable.h"
 
-// add commments here
+// Class CustomerCollection:
+//  Description:
+//   - This class control and modify the information of customer in the system
+//  Implementation:
+//   - Create customer:
+//     - Insert, remove and retrieve customer from the system
 class CustomerCollection {
 public:
     CustomerCollection();
