@@ -2,6 +2,12 @@
 #define _COMMAND_INVENTORY_
 #include "command.h"
 
+// Class Inventory:
+//  Description:
+//   - Children class of command
+//  Implementation:
+//   - Create inventory:
+//     - Create an inventory for the system.
 class Inventory : public Command {
 
     // print out full command
