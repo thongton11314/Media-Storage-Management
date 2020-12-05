@@ -41,7 +41,7 @@ const Customer* CustomerCollection::getACustomer(const int & id) const {
 
 //----------------------------------------------------------------------------
 // display
-// Display a list of customers in to the system
+// Display a list of customer to the system
 void CustomerCollection::display() const {
     collection.display();
 }
