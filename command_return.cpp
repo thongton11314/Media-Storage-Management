@@ -1,5 +1,6 @@
 #include "command_return.h"
-//----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
 // constructor
 Return::Return() {
 	this->type = BORROW;
@@ -8,12 +9,14 @@ Return::Return() {
 	this->movieType = DEFAULT_TYPE;
 	this->media = nullptr;
 }
-//----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
 // destructor
 Return::~Return() {
 	delete media;
 }
-//----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
 //setData
 bool Return::setData(ifstream& infile) {
 
@@ -49,7 +52,7 @@ bool Return::setData(ifstream& infile) {
 	infile >> this->mediaType;
 	switch (this->mediaType) {
 
-		// media is movie
+	// media is movie
 	case MOVIE:
 		infile.ignore();
 		infile >> this->movieType;
@@ -62,7 +65,7 @@ bool Return::setData(ifstream& infile) {
 
 		switch (this->movieType) {
 
-			// create comedy
+		// create comedy
 		case COMEDY:
 			aMedia = new Comedy();
 
@@ -80,7 +83,7 @@ bool Return::setData(ifstream& infile) {
 			fullCommand += ' ' + tempTitle + ", " + to_string(tempYear);
 			break;
 
-			// create classic
+		// create classic
 		case CLASSIC:
 			aMedia = new Classic();
 
@@ -111,7 +114,7 @@ bool Return::setData(ifstream& infile) {
 				+ ' ' + tempActorLast;
 			break;
 
-			// create drama
+		// create drama
 		case DRAMA:
 			aMedia = new Drama();
 
@@ -129,7 +132,7 @@ bool Return::setData(ifstream& infile) {
 			fullCommand += ' ' + tempDirector + ", " + tempTitle + ", ";
 			break;
 
-			// invalid movie type
+		// invalid movie type
 		default:
 			infile.ignore();
 			getline(infile, temp, '\n');
@@ -140,7 +143,7 @@ bool Return::setData(ifstream& infile) {
 		}
 		break;
 
-		// invalid media type
+	// invalid media type
 	default:
 		infile.ignore();
 		getline(infile, temp, '\n');
@@ -158,9 +161,11 @@ bool Return::setData(ifstream& infile) {
 	bool isValid = this->media != nullptr ? isValid = true : isValid = false;
 	return isValid;
 }
-//----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
 // processReturn
-bool Return::processReturn(MediaCollection & meColl, CustomerCollection & cusColl) {
+bool Return::processReturn(MediaCollection & meColl, 
+	CustomerCollection & cusColl) {
 	
 	Customer* cusRetriever;
 
@@ -213,12 +218,18 @@ bool Return::processReturn(MediaCollection & meColl, CustomerCollection & cusCol
 	// fail return
 	return false;
 }
-//----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
+// out
+// use for set ostream data
 ostream& Return::out(ostream& out) const {
 	out << this->fullCommand;
 	return out;
 }
-//----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
+// operator<<
+// use to print out command return data
 ostream& operator<<(ostream& out, const Return& r) {
 	r.out(out);
 	return out;

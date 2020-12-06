@@ -1,4 +1,3 @@
-// add comments here
 #ifndef _MEDIA_COLLECTION_
 #define _MEDIA_COLLECTION_
 #include <iostream>
@@ -7,6 +6,7 @@
 #include "bst.h"
 
 using namespace std;
+
 // Class MediaCollection:
 //  Description:
 //   - This class control and modify what is in the media
@@ -15,13 +15,29 @@ using namespace std;
 //     - Add a new type of media to the collection 
 class MediaCollection {
 public:
+
+    // constructor
     MediaCollection();
+
+    // deconstructor
     ~MediaCollection();
+
+    // insert media
     bool insert(Media* media);
+
+    // retrieve media
     bool retrieve(const Media& target, Media*& retriever);
+
+    // remove media
     bool remove(const Media& target);
+
+    // display media
     void display() const;
+
+    // get total media
     int getTotalMedia() const;
+    
+    // get total movie
     int getTotalMovie() const;
 private:
 
@@ -38,5 +54,4 @@ private:
     bool retrieveMovie(const Media& target, Media*& retriever);
     bool removeMovie(const Media& target);
 };
-
 #endif //!_MEDIA_COLLECTION_

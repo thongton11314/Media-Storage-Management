@@ -13,8 +13,10 @@ using namespace std;
 //  Description:
 //   - This class read file from main to initialize customer, movie, commands
 //  Implementation:
+//   - Display History
+//     - Display all borrow and return of a customer
 //   - Display inventory:
-//     - Output all Comedy movies, then all Dramas, then all Classics.
+//     - Output all Comedy movies, then all Dramas, then all Classics
 class StoreManager {
     public:
         StoreManager();   // constructor

@@ -29,5 +29,4 @@ private:
     //Check for any movie type that is not in the system
     static void errorType(const char& cType, ifstream& infile);
 };
-
 #endif //!_MEDIA_MOVIE_FACTORY_

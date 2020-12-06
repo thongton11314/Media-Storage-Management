@@ -1,6 +1,3 @@
-// add comments
-// class movie type classis
-
 #ifndef _CLASSIC_
 #define _CLASSIC_
 #include "media_movie.h"
@@ -13,6 +10,7 @@
 //     - Create and set the movie name and type related to the file
 class Classic : public Movie {
 
+    // operator<<
     friend ostream& operator<<(ostream &, const Classic &);
     
 public:

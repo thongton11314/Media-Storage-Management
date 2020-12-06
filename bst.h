@@ -21,23 +21,39 @@
 //      sub-function to help it traverse the tree recursively, insertHelper
 //      retrieveHelper, removeHelper, displayHelper, emptyHelper will be called.
 //---------------------------------------------------------------------------
-
 template <typename T>
 class BSTree {
     
 public:
-    BSTree();          // constructor
-    ~BSTree();         // calls makeEmpty which deallocates all memory
-    bool insert(T*);   // insert object into the tree
-    bool retrieve(const T&, T*&) const;     // retrieve object
-    bool remove(const T&);  // remove node
-    void display() const;   // displays the contents of a tree to cout
-    void makeEmpty();       // empty the current tree, deallocates all memory
-    bool isEmpty() const;   // returns true if tree is empty
+
+    // constructor
+    BSTree();
+
+    // calls makeEmpty which deallocates all memory
+    ~BSTree();
+
+    // insert object into the tree
+    bool insert(T*);
+
+    // retrieve object
+    bool retrieve(const T&, T*&) const;
+    
+    // remove node
+    bool remove(const T&);
+
+    // displays the contents of a tree to cout
+    void display() const;
+    
+    // empty the current tree, deallocates all memory
+    void makeEmpty();
+
+    // returns true if tree is empty
+    bool isEmpty() const;
+
+    // return total node
     int getTotalNode() const;
 
 protected:
-    int totalNode;
 
     // node that has client data and left,right node
     struct Node {
@@ -46,7 +62,11 @@ protected:
         Node* left;
     };
 
-    Node* root;             // root of the tree
+    // root of the tree
+    Node* root;
+
+    // total nodes
+    int totalNode;
 
     // use for traverse recursively tree, then add node
     // first parameter is new node
@@ -346,6 +366,9 @@ bool BSTree<T>::isEmpty() const {
     return root == nullptr;
 }
 
+//-----------------------------------------------------------------------------
+// getTotalNode
+// return total node
 template<typename T>
 int BSTree<T>::getTotalNode() const {
     return totalNode;

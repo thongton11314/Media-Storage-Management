@@ -1,6 +1,3 @@
-// add comments
-// class movie type drama
-
 #ifndef _DRAMA_
 #define _DRAMA_
 #include "media_movie.h"
@@ -13,6 +10,7 @@
 //     - Create and set movie name and type related to the file
 class Drama : public Movie {
 
+    // operator<<
     friend ostream& operator<<(ostream &, const Drama &);
     
 public:
@@ -43,5 +41,4 @@ public:
     virtual bool operator!=(const Media&) const;
     virtual Media & operator=(const Media&);
 };
-
 #endif //!_DRAMA_

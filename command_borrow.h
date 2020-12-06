@@ -1,5 +1,3 @@
-// add comments here
-
 #ifndef _COMMAND_BORROW_
 #define _COMMAND_BORROW_
 #include "command.h"

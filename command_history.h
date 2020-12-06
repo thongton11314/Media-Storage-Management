@@ -30,5 +30,4 @@ public:
 private:
     virtual ostream& out(ostream&) const override;
 };
-
 #endif //!_COMMAND_HISTORY_

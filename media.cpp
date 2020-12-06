@@ -1,34 +1,33 @@
 #include "media.h"
 
-//----------------------------------------------------------------------------
-// Media
-// Destructor
+//-----------------------------------------------------------------------------
+// destructor
 Media::~Media() {}
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // setStock
-// Modify the number of stock in the system
+// modify the number of stock in the system
 void Media::setStock(unsigned int amount) {
     this->stock = amount;
 }
 	
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // getStock
-// Return the amount of stock in the system
+// return the amount of stock in the system
 int Media::getStock() const {
     return this->stock;
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // addStock
-// Increase the number of stock in the system
+// increase the number of stock in the system
 void Media::addStock(unsigned int amount) {
     this->stock += amount;
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // reduceStock
-// Reduce the amount of stock in the system
+// reduce the amount of stock in the system
 bool Media::reduceStock(int amount) {
     if (this->stock - amount < 0)
         return false;
@@ -37,9 +36,9 @@ bool Media::reduceStock(int amount) {
     return true;
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // operator<<
-// Print out the media to the system
+// print out the media to the system
 ostream& operator<<(ostream & out, const Media & media) {
     media.print(out);
     return out;

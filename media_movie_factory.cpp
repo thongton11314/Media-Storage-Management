@@ -1,7 +1,8 @@
 #include "media_movie_factory.h"
-//----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
 // createMovie
-// Read and create a new movie according to the file information
+// read and create a new movie according to the file information
 Movie * MovieFactory::createMovie(ifstream & infile) {
     Movie * newMovie = nullptr;
     MovieType movieType;
@@ -17,7 +18,7 @@ Movie * MovieFactory::createMovie(ifstream & infile) {
     }
 
     // specific type
-    switch (movieType) {    
+    switch (movieType) {
     case COMEDY:
         newMovie = createMovieComedy(infile);
         break;    
@@ -34,7 +35,7 @@ Movie * MovieFactory::createMovie(ifstream & infile) {
     return newMovie;
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // createMovieComedy
 // create a comedy type movie with the file information
 Movie * MovieFactory::createMovieComedy(ifstream & infile) {
@@ -45,7 +46,7 @@ Movie * MovieFactory::createMovieComedy(ifstream & infile) {
     return nullptr;
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // createMovieDrama
 // create a drama type movie with the file information
 Movie * MovieFactory::createMovieDrama(ifstream & infile) {
@@ -56,7 +57,7 @@ Movie * MovieFactory::createMovieDrama(ifstream & infile) {
     return nullptr;
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // createMovieClassic
 // create a classic type movie with the file information
 Movie * MovieFactory::createMovieClassic(ifstream & infile) {
@@ -67,9 +68,9 @@ Movie * MovieFactory::createMovieClassic(ifstream & infile) {
     return nullptr;
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // errorType
-// Check and notify the user if the movie type is not included in the system
+// check and notify the user if the movie type is not included in the system
 void MovieFactory::errorType(const char& mType, ifstream& infile) {
     string fullInfor;
     getline(infile, fullInfor);

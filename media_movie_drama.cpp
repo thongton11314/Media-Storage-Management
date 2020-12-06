@@ -1,7 +1,7 @@
 #include "media_movie_drama.h"
+
 //----------------------------------------------------------------------------
-// Drama
-// Default constructor
+// default constructor
 Drama::Drama() {
     this->type = DRAMA;
     this->stock = DEFAULT_STOCK;
@@ -11,8 +11,7 @@ Drama::Drama() {
 }
 
 //----------------------------------------------------------------------------
-// Drama
-// Copy constructor
+// copy constructor
 Drama::Drama(const Drama & other) {
     this->type = other.type;
     this->stock = other.stock;
@@ -22,13 +21,12 @@ Drama::Drama(const Drama & other) {
 }
 
 //----------------------------------------------------------------------------
-// Drama
-// Destructor
+// destructor
 Drama::~Drama() {}
 
 //----------------------------------------------------------------------------
 // setData
-// Read and store the movie in the system from the file
+// read and store the movie in the system from the file
 bool Drama::setData(ifstream & infile) {
 
     // set up stock
@@ -70,7 +68,7 @@ string Drama::getHashKey() const {
 
 //----------------------------------------------------------------------------
 // operator<
-// Movie comparison operator
+// movie comparison operator
 bool Drama::operator<(const Media & other) const {    
 
     // compare director first
@@ -95,7 +93,7 @@ bool Drama::operator<(const Media & other) const {
 
 //----------------------------------------------------------------------------
 // operator<=
-// Movie comparison operator
+// movie comparison operator
 bool Drama::operator<=(const Media & other) const {
 
     // compare director first
@@ -116,7 +114,7 @@ bool Drama::operator<=(const Media & other) const {
 
 //----------------------------------------------------------------------------
 // operator>
-// Movie comparison operator
+// movie comparison operator
 bool Drama::operator>(const Media & other) const {
 
     // compare director first
@@ -141,7 +139,7 @@ bool Drama::operator>(const Media & other) const {
 
 //----------------------------------------------------------------------------
 // operator>=
-// Movie comparison operator
+// movie comparison operator
 bool Drama::operator>=(const Media & other) const {
 
     // compare director first
@@ -162,7 +160,7 @@ bool Drama::operator>=(const Media & other) const {
 
 //----------------------------------------------------------------------------
 // operator==
-// Movie comparison operator
+// movie comparison operator
 bool Drama::operator==(const Media & other) const {
     if ((this->getDirector().compare(dynamic_cast<const Drama&>(other).getDirector()
     ) == 0)
@@ -176,7 +174,7 @@ bool Drama::operator==(const Media & other) const {
 
 //----------------------------------------------------------------------------
 // operator=
-// Movie comparison operator
+// movie comparison operator
 Media & Drama::operator=(const Media& other) {
     this->type = dynamic_cast<const Drama&>(other).getMovieType();
     this->stock = dynamic_cast<const Drama&>(other).getStock();
@@ -188,14 +186,14 @@ Media & Drama::operator=(const Media& other) {
 
 //----------------------------------------------------------------------------
 // operator!=
-// Movie comparison operator
+// movie comparison operator
 bool Drama::operator!=(const Media & other) const {
     return !(*this == dynamic_cast<const Drama&>(other));
 }
 
 //----------------------------------------------------------------------------
 // print
-// Print out the movie information
+// print out the movie information
 void Drama::print(ostream & stream) const {
     cout << this->getMovieType() << ", "
     << this->getStock() << ", "

@@ -1,5 +1,3 @@
-// hashtable must be implement by developer. For the collision, can use library data stucture.
-
 #ifndef _HASTABLE_
 #define _HASTABLE_
 #include <string>
@@ -7,41 +5,50 @@
 
 using namespace std;
 
+// table size
 const int TABLE_SIZE = 97;
-
 
 // Class Hashtable:
 //  Description:
 //   - This class create a hashtable to store key and value within the table
 //  Implementation:
-//   - Create Hashtable:
-//     - Output all Comedy movies, then all Dramas, then all Classics.
+//   - Hashtable is impletemnted by using probing technique
+//      - Binary Search Ttree is used as each bucket
 template <typename Key, typename Val>
 class Hashtable {
 public:
+
+    // constructor
     Hashtable();
-    Hashtable(const Hashtable & other);
+
+    // deconstructor
     ~Hashtable();
+
+    // insert pair
     bool insertKeyValue(Key key, Val * val);
+    
+    // retrieve value by key
     bool retrieveValue(Key key, Val *& retriever) const;
+    
+    // get value by key
     const Val * getValue(Key key) const;
+
+    // remove value by key
     bool removeValue(Key key);
+
+    // display all value
     void display() const;
 private:
 
     // bst as each bucket
-    BSTree<Val> * table[TABLE_SIZE];      // a map for each bucket
+    BSTree<Val> * table[TABLE_SIZE];        // a map for each bucket
 
-    void makeEmpty();                       // make the table empty
-    // add more code here, use hash table
+    // make the table empty
+    void makeEmpty();
 };
 
-
-// implementation is bellow
-
 //----------------------------------------------------------------------------
-// Hashtable
-// Default Constructor
+// constructor
 template <typename Key, typename Val>
 Hashtable<Key, Val>::Hashtable() {
 
@@ -51,17 +58,9 @@ Hashtable<Key, Val>::Hashtable() {
     }
 }
 
-//----------------------------------------------------------------------------
-// Hashtable
-// Copy Constructor
-template <typename Key, typename Val>
-Hashtable<Key, Val>::Hashtable(const Hashtable & other) {
-    
-}
 
 //----------------------------------------------------------------------------
-// Hashtable
-// Destructor
+// destructor
 template <typename Key, typename Val>
 Hashtable<Key, Val>::~Hashtable() {
     makeEmpty();
@@ -101,9 +100,8 @@ bool Hashtable<Key, Val>::insertKeyValue(Key key, Val * val) {
 // retrieve the value of the key from the table
 template <typename Key, typename Val>
 bool Hashtable<Key, Val>::retrieveValue(Key key, Val *& retriever) const {
-    // retrieve object by key from bucket, if collision look into bst
-        // return true if successful, otherwise false
 
+    // get hash number
     const int hash = reinterpret_cast<const int&>(key) % TABLE_SIZE;
 
     // can not be negative
@@ -131,6 +129,7 @@ bool Hashtable<Key, Val>::retrieveValue(Key key, Val *& retriever) const {
 template <typename Key, typename Val>
 const Val * Hashtable<Key, Val>::getValue(Key key) const {
 
+    // get hash number
     const int hash = reinterpret_cast<const int&>(key) % TABLE_SIZE;
 
     // can not be negative
@@ -161,9 +160,8 @@ const Val * Hashtable<Key, Val>::getValue(Key key) const {
 // remove the value of the key 
 template <typename Key, typename Val>
 bool Hashtable<Key, Val>::removeValue(Key key) {
-    // remove object in the bucket, if collision look in to bst
-    // return true if remove successful
-    // return false if remove fail    
+
+    // get hash number
     const int hash = reinterpret_cast<const int&>(key) % TABLE_SIZE;
 
     // can not be negative
@@ -213,5 +211,4 @@ void Hashtable<Key, Val>::makeEmpty() {
         this->table[i] = nullptr;
     }
 }
-
 #endif //!_HASTABLE_

@@ -1,5 +1,3 @@
-// add comments here
-// parents class of movie class. This is pure virtual function
 #ifndef _MEDIA_
 #define _MEDIA_
 #include <iostream>
@@ -14,7 +12,6 @@ const int DEFAULT_STOCK = 0;
 const string DEFAULT_TITLE = "DEFAULT";
 const string DEFAULT_PERSON = "DEFAULT";
 const int DEFAULT_NUM = 0;
-
 
 const char MOVIE = 'D';
 const char COMEDY = 'F';

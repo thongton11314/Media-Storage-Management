@@ -1,6 +1,3 @@
-// add comments
-// class movie type comedy
-
 #ifndef _COMEDY_
 #define _COMEDY_
 #include "media_movie.h"

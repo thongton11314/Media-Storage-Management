@@ -1,5 +1,3 @@
-// add comments here
-
 #ifndef _COMMAND_RETURN_
 #define _COMMAND_RETURN_
 #include "command.h"
@@ -9,7 +7,7 @@
 //   - Children class of command
 //  Implementation:
 //   - Create return:
-//     - Create a return request for the customer.
+//     - Create a return request for the customer
 class Return : public Command {
 
     // print out full command
@@ -35,5 +33,4 @@ private:
     Media* media;
     virtual ostream& out(ostream&) const override;
 };
-
 #endif //!_COMMAND_RETURN_

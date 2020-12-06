@@ -1,15 +1,14 @@
 #include "store_manager.h"
-//----------------------------------------------------------------------------
-// StoreManager
-// Default constructor for Store Manager
+
+//-----------------------------------------------------------------------------
+// constructor
 StoreManager::StoreManager() {}
 
-//----------------------------------------------------------------------------
-// StoreManager
-// Store manager destructor
+//-----------------------------------------------------------------------------
+// deconstructor
 StoreManager::~StoreManager() {}
 
-//----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // buildCustomers
 // read and build a list of customer from the file
 void StoreManager::buildCustomers(ifstream & infile) {
@@ -41,7 +40,7 @@ void StoreManager::buildCustomers(ifstream & infile) {
     infile.close();
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // buildMovies
 // read and build a list of movie from the file
 void StoreManager::buildMovies(ifstream & infile) {
@@ -80,7 +79,7 @@ void StoreManager::buildMovies(ifstream & infile) {
     infile.close();
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // processCommands
 // get customer commands from the file to process
 void StoreManager::processCommands(ifstream & infile) {

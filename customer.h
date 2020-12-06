@@ -7,14 +7,16 @@
 #include <list>
 #include <algorithm>
 #include "media.h"
+
 using namespace std;
 
+// define constant
 const int MINID = 1;                    // smallest id
 const int MAXID = 9999;                 // max id
 const int DEFAULT_ID = 0;               // default id
 const string DEFAULT_NAME = "DEFAULT";  // default name
 
-//class Command
+// class identifier
 class Command;
 
 // Class Customer:
@@ -42,23 +44,40 @@ class Customer {
         ~Customer();
 
         // setter
-        void setID(int id);                     // set id
-        void setFirstName(string first);        // set last name
-        void setLastName(string last);          // set first name
-        bool setData(ifstream & infile);        // fill data from file
-        
+        // set id
+        void setID(int id);
+
+        // set last name
+        void setFirstName(string first);
+
+        // set first name
+        void setLastName(string last);
+
+        // fill data from file
+        bool setData(ifstream & infile);
+
         // getter
-        int getId() const;                      // get ID
-        string getFirstName() const;            // get first name
-        string getLastName() const;             // get last name
+        // get ID
+        int getId() const;
+
+        // get first name
+        string getFirstName() const;
+
+        // get last name
+        string getLastName() const;
 
         // get history borrow or return
         const vector<Command*> getHistories() const;
 
         // function
-        void borrowMedia(Media * media);        // customer has borrowed media
-        bool returnMedia(Media * target);       // customer has returned media
-        void addHistory(Command * command);       // add commands history
+        // customer has borrowed media
+        void borrowMedia(Media * media);
+
+        // customer has returned media
+        bool returnMedia(Media * target);
+
+        // add commands history
+        void addHistory(Command * command);
 
         // operator in case needed
         bool operator<(const Customer&) const;

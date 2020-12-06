@@ -1,7 +1,3 @@
-// add comments here
-// parents class of comedy, drama, classical class. This is pure virtual function
-// this class function will hold commonds function for inherited class which are classic, comedy, drama
-
 #ifndef _MOVIE_
 #define _MOVIE_
 #include "media.h"

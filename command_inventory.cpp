@@ -1,20 +1,26 @@
 #include "command_inventory.h"
+
 //----------------------------------------------------------------------------
-// Constructor
+// constructor
 Inventory::Inventory() {
     this->type = INVENTORY;
 }
+
 //----------------------------------------------------------------------------
-// Destructor
+// destructor
 Inventory::~Inventory() {
 }
+
 //----------------------------------------------------------------------------
-//processInventory
+// processInventory
 void Inventory::processInventory(MediaCollection & meColl) {
     cout << "Inventory:" << endl;
     meColl.display();
 }
+
 //----------------------------------------------------------------------------
+// operator<<
+// print out command inventory data
 ostream& operator<<(ostream & out, const Inventory & command) {
     out << command.type;
     return out;

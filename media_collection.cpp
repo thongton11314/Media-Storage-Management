@@ -1,8 +1,7 @@
 #include "media_collection.h"
 
-//----------------------------------------------------------------------------
-// MediaCollection
-// Default constructor
+//-----------------------------------------------------------------------------
+// default constructor
 MediaCollection::MediaCollection() {
 
     // nested specific type of movie into movie collection
@@ -23,15 +22,14 @@ MediaCollection::MediaCollection() {
     // further nested specific type of media go here...
 }
 
-//----------------------------------------------------------------------------
-// MediaCollection
-// Destructor
+//-----------------------------------------------------------------------------
+// destructor
 MediaCollection::~MediaCollection() {
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // insert
-// Insert a new media into the system
+// insert a new media into the system
 bool MediaCollection::insert(Media* media) {
 
     // check movie type
@@ -43,9 +41,9 @@ bool MediaCollection::insert(Media* media) {
     return false;
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // insertMovie
-// Insert a new movie into the system
+// insert a new movie into the system
 bool MediaCollection::insertMovie(Media* media) {
     MovieType type = dynamic_cast<Movie*>(media)->getMovieType();
 
@@ -70,9 +68,9 @@ bool MediaCollection::insertMovie(Media* media) {
     }
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // retrieve
-// Retrieve the requested media type from the system
+// retrieve the requested media type from the system
 bool MediaCollection::retrieve(const Media& target, Media*& retriever) {
 
     // check media type
@@ -85,9 +83,9 @@ bool MediaCollection::retrieve(const Media& target, Media*& retriever) {
     return false;
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // retrieveMovie
-// Retrieve the requested movie from the system
+// retrieve the requested movie from the system
 bool MediaCollection::retrieveMovie(const Media& target, Media*& retriever) {
     MovieType type =  dynamic_cast<const Movie&>(target).getMovieType();
 
@@ -112,9 +110,9 @@ bool MediaCollection::retrieveMovie(const Media& target, Media*& retriever) {
     }
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // remove
-// Remove the selective media type from the system
+// remove the selective media type from the system
 bool MediaCollection::remove(const Media& target) {
 
     // check media type
@@ -126,9 +124,9 @@ bool MediaCollection::remove(const Media& target) {
     return false;
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // removeMovie
-// Remove the selective movie from the system
+// remove the selective movie from the system
 bool MediaCollection::removeMovie(const Media& target) {
 
     // retrieve comedy
@@ -152,7 +150,7 @@ bool MediaCollection::removeMovie(const Media& target) {
     }
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // display
 // Display all media to the system
 void MediaCollection::display() const {
@@ -161,14 +159,14 @@ void MediaCollection::display() const {
     movieCollection.at(CLASSIC).display();
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // getTotalMedia
-// Return the total number of media in the system
+// return the total number of media in the system
 int MediaCollection::getTotalMedia() const {
     return getTotalMovie();
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // getTotalMovie
 // return the number of movie to the system
 int MediaCollection::getTotalMovie() const {

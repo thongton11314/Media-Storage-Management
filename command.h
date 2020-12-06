@@ -3,6 +3,7 @@
 #include "customers_collection.h"
 #include "media_collection.h"
 
+// define constant
 const char BORROW = 'B';
 const char RETURN = 'R';
 const char HISTORY = 'H';
@@ -10,14 +11,16 @@ const char INVENTORY = 'I';
 const char DEFAULT_TYPE = '!';
 const string DEFAULT_FULLCOMMAND = "DEFAULT";
 
+// identifer character as command type
 typedef char CommandType;
 
 // Class Command:
 //  Description:
+//   - Parent class of Borrow, Return, History, Inventory
 //   - This class create command based on the customer requested
 //  Implementation:
 //   - Create command:
-//     - Create a command for customer based on their request.
+//     - Create a command for customer based on their request
 class Command {
 
     // print out fulll command
@@ -51,7 +54,6 @@ class Command {
         CommandType type;
         string fullCommand;
         virtual ostream& out(ostream &) const;
-        // add more data if needed
 };
 #include "command_borrow.h"
 #include "command_return.h"
