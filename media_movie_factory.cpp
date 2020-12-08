@@ -5,7 +5,7 @@
 // read and create a new movie according to the file information
 Movie * MovieFactory::createMovie(ifstream & infile) {
     Movie * newMovie = nullptr;
-    MovieType movieType;
+    char movieType;
 
     // get movie type
     infile >> movieType;
@@ -13,19 +13,19 @@ Movie * MovieFactory::createMovie(ifstream & infile) {
     // if fail to read movie type
     if (infile.fail()) {
         infile.clear();
-        infile.ignore(99, '\n');        
+        infile.ignore(99, '\n');
 		return nullptr;
     }
 
     // specific type
     switch (movieType) {
-    case COMEDY:
+    case MovieType::ComedyType:
         newMovie = createMovieComedy(infile);
         break;    
-    case CLASSIC:
+    case MovieType::ClassicType:
         newMovie = createMovieClassic(infile);
         break;
-    case DRAMA:
+    case MovieType::DramaType:
         newMovie = createMovieDrama(infile);
         break;
     default:

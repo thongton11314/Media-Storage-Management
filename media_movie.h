@@ -32,7 +32,6 @@ public:
     // pure virtual function
     virtual MovieType getMovieType() const = 0;
     virtual MediaType getMediaType() const;
-    virtual string getHashKey() const = 0;
 
     // arithmetic operator
     virtual bool operator<(const Media&) const = 0;
@@ -44,7 +43,7 @@ public:
     virtual Media & operator=(const Media&) = 0;
 
 protected:
-    MovieType type;
+    MovieType movieType;
     string director;
     string title;
     int year;

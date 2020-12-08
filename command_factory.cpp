@@ -19,22 +19,22 @@ Command * CommandFactory::createCommand(ifstream & infile) {
     switch (commandType) {
 
     // borrow type
-    case BORROW:
+    case CommandType::BorrowType:
         newCommand = createBorrow(infile);
         break;
     
     // return type
-    case RETURN:
+    case CommandType::ReturnType:
         newCommand = createReturn(infile);
         break;
     
     // history type
-    case HISTORY:
+    case CommandType::HistoryType:
         newCommand = createHistory(infile);
         break;
 
     // inventory type
-    case INVENTORY:
+    case CommandType::InventoryType:
         newCommand = createInventory(infile);
         break;
 
@@ -55,7 +55,7 @@ Command * CommandFactory::createBorrow(ifstream& infile) {
 
     // create a borrow
     Borrow * cBorrow = new Borrow();
-    cBorrow->setCommandType(BORROW);
+    cBorrow->setCommandType(CommandType::BorrowType);
     if (cBorrow->setData(infile)) {
         return cBorrow;
     }
@@ -69,7 +69,7 @@ Command * CommandFactory::createBorrow(ifstream& infile) {
 Command * CommandFactory::createReturn(ifstream& infile) {
 
     Return* cReturn = new Return();
-    cReturn->setCommandType(RETURN);
+    cReturn->setCommandType(CommandType::ReturnType);
     if (cReturn->setData(infile)) {
         return cReturn;
     }
@@ -82,7 +82,7 @@ Command * CommandFactory::createReturn(ifstream& infile) {
 // creates the history object
 Command * CommandFactory::createHistory(ifstream& infile) {
     History* cHistory = new History();
-    cHistory->setCommandType(HISTORY);
+    cHistory->setCommandType(CommandType::HistoryType);
     if (cHistory->setData(infile)) {
         return cHistory;
     }

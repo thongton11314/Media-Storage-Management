@@ -12,9 +12,6 @@
     
 - To check memory leak, we use the command line at the Linux terminal which “valgrind ./a.out”
     - The memory leak was carefully detected and manageable. There is no memory leak in this project
-
-# Output:
-- typescript: sample out put of this program
     
 # How the Application Process
 

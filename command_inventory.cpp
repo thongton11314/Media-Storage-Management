@@ -3,7 +3,7 @@
 //----------------------------------------------------------------------------
 // constructor
 Inventory::Inventory() {
-    this->type = INVENTORY;
+    this->commandType = CommandType::InventoryType;
 }
 
 //----------------------------------------------------------------------------
@@ -22,6 +22,6 @@ void Inventory::processInventory(MediaCollection & meColl) {
 // operator<<
 // print out command inventory data
 ostream& operator<<(ostream & out, const Inventory & command) {
-    out << command.type;
+    out << command.commandType;
     return out;
 }

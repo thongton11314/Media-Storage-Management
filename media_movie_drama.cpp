@@ -3,7 +3,7 @@
 //----------------------------------------------------------------------------
 // default constructor
 Drama::Drama() {
-    this->type = DRAMA;
+    this->movieType = MovieType::DramaType;
     this->stock = DEFAULT_STOCK;
     this->title = DEFAULT_TITLE;
     this->director = DEFAULT_PERSON;
@@ -13,7 +13,7 @@ Drama::Drama() {
 //----------------------------------------------------------------------------
 // copy constructor
 Drama::Drama(const Drama & other) {
-    this->type = other.type;
+    this->movieType = other.movieType;
     this->stock = other.stock;
     this->title = other.title;
     this->director = other.director;
@@ -56,14 +56,7 @@ bool Drama::setData(ifstream & infile) {
 // getMovieType
 // return the movie type
 MovieType Drama::getMovieType() const {
-    return this->type;
-}
-
-//----------------------------------------------------------------------------
-// getHashKey
-// return the director and the title of the movie
-string Drama::getHashKey() const {
-    return this->director + " " + this->title;
+    return this->movieType;
 }
 
 //----------------------------------------------------------------------------
@@ -176,7 +169,7 @@ bool Drama::operator==(const Media & other) const {
 // operator=
 // movie comparison operator
 Media & Drama::operator=(const Media& other) {
-    this->type = dynamic_cast<const Drama&>(other).getMovieType();
+    this->movieType = dynamic_cast<const Drama&>(other).getMovieType();
     this->stock = dynamic_cast<const Drama&>(other).getStock();
     this->director = dynamic_cast<const Drama&>(other).getDirector();
     this->title = dynamic_cast<const Drama&>(other).getTitle();
@@ -195,7 +188,7 @@ bool Drama::operator!=(const Media & other) const {
 // print
 // print out the movie information
 void Drama::print(ostream & stream) const {
-    cout << this->getMovieType() << ", "
+    cout << (char)this->getMovieType() << ", "
     << this->getStock() << ", "
     << this->getDirector() << ", "
     << this->getTitle() << ", "

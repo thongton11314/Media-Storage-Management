@@ -316,7 +316,7 @@ void BSTree<T>::displayHelper(Node * current) const {
     // print from left to right subtree
     else {
         displayHelper(current->left);
-        std::cout << *current->data << std::endl;
+        std::cout << "  " << *current->data << std::endl;
         displayHelper(current->right);
     }
 }

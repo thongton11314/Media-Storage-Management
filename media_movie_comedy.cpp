@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // default Constructor
 Comedy::Comedy() {
-    this->type = COMEDY;
+    this->movieType = MovieType::ComedyType;
     this->stock = DEFAULT_STOCK;
     this->title = DEFAULT_TITLE;
     this->director = DEFAULT_PERSON;
@@ -13,7 +13,7 @@ Comedy::Comedy() {
 //-----------------------------------------------------------------------------
 // copy constructor
 Comedy::Comedy(const Comedy & other) {
-    this->type = other.type;
+    this->movieType = other.movieType;
     this->stock = other.stock;
     this->title = other.title;
     this->director = other.director;
@@ -56,14 +56,7 @@ bool Comedy::setData(ifstream& infile) {
 // getMovieType
 // return the movie type
 MovieType Comedy::getMovieType() const {
-    return this->type;
-}
-
-//-----------------------------------------------------------------------------
-// getHashKey
-// return the title and the year of the movie
-string Comedy::getHashKey() const {
-    return this->getTitle() + " " + to_string(this->getYear());
+    return this->movieType;
 }
 
 //-----------------------------------------------------------------------------
@@ -147,7 +140,7 @@ bool Comedy::operator!=(const Media & other) const {
 // operator=
 // movie comparison operator
 Media & Comedy::operator=(const Media& other) {
-    this->type = dynamic_cast<const Comedy&>(other).getMovieType();
+    this->movieType = dynamic_cast<const Comedy&>(other).getMovieType();
     this->stock = dynamic_cast<const Comedy&>(other).getStock();
     this->director = dynamic_cast<const Comedy&>(other).getDirector();
     this->title = dynamic_cast<const Comedy&>(other).getTitle();
@@ -159,7 +152,7 @@ Media & Comedy::operator=(const Media& other) {
 // print
 // print out the movie information
 void Comedy::print(ostream & stream) const {
-    cout << this->getMovieType() << ", "
+    cout << (char)this->getMovieType() << ", "
     << this->getStock() << ", "
     << this->getDirector() << ", "
     <<  this->getTitle() << ", "

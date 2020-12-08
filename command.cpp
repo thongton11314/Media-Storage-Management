@@ -3,70 +3,81 @@
 //-----------------------------------------------------------------------------
 // constructor
 Command::Command() {
-	this->type = DEFAULT_TYPE;
+	this->commandType = DefaultCommandType;
 	this->customerID = DEFAULT_ID;
-	this->fullCommand = DEFAULT_TYPE;
+	this->fullCommand = DefaultCommandType;
 }
+
 //-----------------------------------------------------------------------------
 // copy constructor 
 Command::Command(const Command& other) {
-	this->type = other.type;
+	this->commandType = other.commandType;
 	this->customerID = other.customerID;
 	this->fullCommand = other.fullCommand;
 }
+
 //-----------------------------------------------------------------------------
 // destructor 
 Command::~Command() {
 }
+
 //-----------------------------------------------------------------------------
+// setCustomerID
 // set user ID
 void Command::setCustomerID(int ID) {
 	this->customerID = ID;
 }
+
 //-----------------------------------------------------------------------------
+// setCommandType
 // set command type
-void Command::setCommandType(char input) {
-	this->type = input;
+void Command::setCommandType(CommandType input) {
+	this->commandType = input;
 }
+
 //-----------------------------------------------------------------------------
+// getCustomerID
 // get user ID
 int Command::getCustomerID() const {
 	return this->customerID;
 }
+
 //-----------------------------------------------------------------------------
+// getCommandType
 // get command type
 CommandType Command::getCommandType() const {
-	return this->type;
+	return this->commandType;
 }
+
 //-----------------------------------------------------------------------------
-// better use binding
-bool Command::process(MediaCollection & meColl, CustomerCollection & cusColl) {
+// process
+// process commands
+void Command::process(MediaCollection & meColl, CustomerCollection & cusColl) {
 	
 	// use to check process or not
 	bool flag = false;
 
 	// select type of command
-	switch (this->type) {
+	switch (this->commandType) {
 	
 	// borrow media
-	case BORROW:
+	case BorrowType:
 		flag = dynamic_cast<Borrow*>(this)->processBorrow(meColl, cusColl);
 		break;
 
 	// return media
-	case RETURN:
+	case ReturnType:
 		flag = dynamic_cast<Return*>(this)->processReturn(meColl, cusColl);
 		break;
 
-	// display or history
-	case HISTORY:
+	// display history
+	case HistoryType:
 		flag = dynamic_cast<History*>(this)->processHistory(cusColl);
 		break;
 	
 	// check inventory
-	case INVENTORY:
+	case InventoryType:
 		dynamic_cast<Inventory*>(this)->processInventory(meColl);
-		flag = true;
 		break;
 
 	// default case
@@ -75,15 +86,23 @@ bool Command::process(MediaCollection & meColl, CustomerCollection & cusColl) {
 		flag = false;
 		break;
 	}
-	return flag;
+
+	// delete this object
+	if (!flag 
+		|| this->commandType == HistoryType
+		|| this->commandType == InventoryType) {
+		delete this;
+	}
 }
+
 //-----------------------------------------------------------------------------
 // out
 // use to set ostream data
 ostream& Command::out(ostream& out) const {
-	out << this->type;
+	out << (char)this->commandType;
 	return out;
 }
+
 //-----------------------------------------------------------------------------
 // operator<<
 // print out the command data

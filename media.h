@@ -13,13 +13,22 @@ const string DEFAULT_TITLE = "DEFAULT";
 const string DEFAULT_PERSON = "DEFAULT";
 const int DEFAULT_NUM = 0;
 
-const char MOVIE = 'D';
-const char COMEDY = 'F';
-const char CLASSIC = 'C';
-const char DRAMA = 'D';
+namespace Types {
 
-typedef char MediaType;
-typedef char MovieType;
+    enum MediaType : char {
+        DVDMovieType = 'D',
+        DefaultMediaType = '!'
+    };
+
+    enum MovieType : char {
+        ComedyType = 'F',
+        ClassicType = 'C',
+        DramaType = 'D',
+        DefaultMovieType = '!'
+    };
+}
+
+using namespace Types;
 
 // Class Media:
 //  Description:
@@ -50,7 +59,6 @@ public :
     
     // pure virtual function
     virtual MediaType getMediaType() const = 0;
-    virtual string getHashKey() const = 0;
 
     // arithmetic operator    
     virtual bool operator<(const Media&) const = 0;
@@ -63,10 +71,10 @@ public :
     
 protected:
     int stock;
+    MediaType mediaType;
 
     // subfunction for operator<<
     virtual void print(ostream & out) const = 0;
 };
-
 #include "media_movie.h"
 #endif //!_MEDIA_

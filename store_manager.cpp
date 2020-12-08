@@ -19,24 +19,27 @@ void StoreManager::buildCustomers(ifstream & infile) {
         return;
     }
     
-    Customer* ptr;
+    Customer* ptr;                          // used for create new customer
     bool checkData;                         // used for reading good data
     while (!infile.eof()) {
         ptr = new Customer();               // create new customer object
-        
-        // must have setData implementation of client
-        checkData = ptr->setData(infile);   // fill the customer object
-        
-        // add valid client
-        if (checkData) {
-            checkData = customerCollection.insertCustomer(ptr);
+
+        // set data for customer
+        if (ptr->setData(infile)) {
+
+            // ignore duplicate
+            if (!customerCollection.insertCustomer(ptr)) {
+                delete ptr;
+            }
         }
-        
-        // ignore invalid client
+
+        // invalid data
         else {
             delete ptr;
         }
     }
+
+    // close files
     infile.close();
 }
 
@@ -101,23 +104,11 @@ void StoreManager::processCommands(ifstream & infile) {
 
         // process command
         if (command != nullptr) {
-
-            // process comand and delete if fail to process
-            // if succesful
-            // return or borrow commands will be assign to customer
-            if (!command->process(mediaCollection, customerCollection)) {
-                delete command;
-                command = nullptr;
-            }
-
-            // history and inventory will be deleted, 
-            // since commands not assign to customer
-            else if (command->getCommandType() == HISTORY
-                || command->getCommandType() == INVENTORY) {
-                delete command;
-                command = nullptr;
-            }
-        }        
+            command->process(mediaCollection, customerCollection);
+            command = nullptr;
+        }
     }
+
+    // close file
     infile.close();
 }

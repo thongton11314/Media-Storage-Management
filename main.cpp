@@ -3,10 +3,6 @@
 #include <ostream>
 #include "store_manager.h"
 #include "bst.h"
-#include <memory>
-#include <list>
-#include <array>
-#include <algorithm>
 using namespace std;
 
 int main() {

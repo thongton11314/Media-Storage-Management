@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // constructor
 History::History() {
-	this->type = HISTORY;
+	this->commandType = CommandType::HistoryType;
 	this->customerID = DEFAULT_ID;
 }
 //-----------------------------------------------------------------------------
@@ -65,7 +65,7 @@ bool History::processHistory(CustomerCollection& cusColl) {
 // out
 // set outsteam data
 ostream& History::out(ostream& out) const {
-	out << this->type << " " << this->getCustomerID();
+	out << (char)this->commandType << " " << this->getCustomerID();
 	return out;
 }
 
@@ -73,6 +73,6 @@ ostream& History::out(ostream& out) const {
 // operator<<
 // print out comman history data
 ostream& operator<<(ostream& out, const History& command) {
-	out << command.type << " " << command.getCustomerID();
+	command.out(out);
 	return out;
 }

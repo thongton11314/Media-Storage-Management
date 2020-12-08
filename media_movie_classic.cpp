@@ -3,7 +3,7 @@
 //-----------------------------------------------------------------------------
 // constructor
 Classic::Classic() {
-    this->type = CLASSIC;
+    this->movieType = MovieType::ClassicType;
     this->stock = DEFAULT_STOCK;
     this->title = DEFAULT_TITLE;
     this->director = DEFAULT_PERSON;
@@ -16,7 +16,7 @@ Classic::Classic() {
 //-----------------------------------------------------------------------------
 // copy constructor
 Classic::Classic(const Classic & other) {
-    this->type = other.type;
+    this->movieType = other.movieType;
     this->stock = other.stock;
     this->title = other.title;
     this->director = other.director;
@@ -111,17 +111,7 @@ string Classic::getMajorActorLast() const {
 // getMovieType
 // return the movie type
 MovieType Classic::getMovieType() const {
-    return this->type;
-}
-
-//-----------------------------------------------------------------------------
-// getHashKey
-// return the date and the major actor name from the movie
-string Classic::getHashKey() const {
-    return to_string(month)
-        + " " + to_string(year)
-        + " " + majorActorFirst
-        + " " + majorActorLast;
+    return this->movieType;
 }
 
 //-----------------------------------------------------------------------------
@@ -211,7 +201,7 @@ bool Classic::operator==(const Media & other) const {
 // operator=
 // movie comparison operator
 Media & Classic::operator=(const Media& other) {
-    this->type = dynamic_cast<const Classic&>(other).getMovieType();
+    this->movieType = dynamic_cast<const Classic&>(other).getMovieType();
     this->stock = dynamic_cast<const Classic&>(other).getStock();
     this->director = dynamic_cast<const Classic&>(other).getDirector();
     this->title = dynamic_cast<const Classic&>(other).getTitle();
@@ -235,7 +225,7 @@ bool Classic::operator!=(const Media & other) const {
 // print
 // print out the movie information to the system
 void Classic::print(ostream & stream) const {
-    cout << this->getMovieType() << ", "
+    cout << (char)this->getMovieType() << ", "
     << this->getStock() << ", "
     << this->getDirector() << ", "
     << this->getTitle() << ", "

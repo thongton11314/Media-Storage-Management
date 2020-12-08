@@ -26,6 +26,7 @@
 
 # Conduct Implementation for Classes
 - Duy Vu:
+  + main
   + command_factory
   + command
   + command_return
@@ -34,14 +35,13 @@
   + command_inventory
   
 - Vincent Le:
-  + main
-  + store_manager
   + hashtable
   + customer
   + customers_collection
   
 - Thong Ton:
   + bst
+  + store_manager
   + media_factory
   + media
   + movie_factory

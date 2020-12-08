@@ -6,18 +6,18 @@ MediaCollection::MediaCollection() {
 
     // nested specific type of movie into movie collection
     // set comedy type
-    movieCollection.insert(
-        pair<MovieType, BSTree<Media>>(COMEDY, comedyCollection)
+    movies.insert(
+        pair<MovieType, BSTree<Media>>(MovieType::ComedyType, comedies)
     );
 
     // set classic type
-    movieCollection.insert(
-        pair<MovieType, BSTree<Media>>(CLASSIC, classicCollection)
+    movies.insert(
+        pair<MovieType, BSTree<Media>>(MovieType::ClassicType, classics)
     );
 
     // set drama type
-    movieCollection.insert(
-        pair<MovieType, BSTree<Media>>(DRAMA, dramaCollection)
+    movies.insert(
+        pair<MovieType, BSTree<Media>>(MovieType::DramaType, dramas)
     );
     // further nested specific type of media go here...
 }
@@ -33,7 +33,7 @@ MediaCollection::~MediaCollection() {
 bool MediaCollection::insert(Media* media) {
 
     // check movie type
-    if (media->getMediaType() == MOVIE)
+    if (media->getMediaType() == MediaType::DVDMovieType)
         return insertMovie(media);
     // further extention type go here...
 
@@ -48,18 +48,18 @@ bool MediaCollection::insertMovie(Media* media) {
     MovieType type = dynamic_cast<Movie*>(media)->getMovieType();
 
     // insert comedy
-    if (type == COMEDY) {
-        return movieCollection.at(COMEDY).insert(media);
+    if (type == MovieType::ComedyType) {
+        return movies.at(MovieType::ComedyType).insert(media);
     }
 
     // insert classic
-    else if (type == CLASSIC) {
-        return movieCollection.at(CLASSIC).insert(media);
+    else if (type == MovieType::ClassicType) {
+        return movies.at(MovieType::ClassicType).insert(media);
     }
 
     // insert drama
-    else if (type == DRAMA) {
-        return movieCollection.at(DRAMA).insert(media);
+    else if (type == MovieType::DramaType) {
+        return movies.at(MovieType::DramaType).insert(media);
     }
 
     // movie type is not exist
@@ -74,7 +74,7 @@ bool MediaCollection::insertMovie(Media* media) {
 bool MediaCollection::retrieve(const Media& target, Media*& retriever) {
 
     // check media type
-    if (target.getMediaType() == MOVIE) {
+    if (target.getMediaType() == MediaType::DVDMovieType) {
         return retrieveMovie(target, retriever);
     }
     // further extention type go here...
@@ -90,18 +90,18 @@ bool MediaCollection::retrieveMovie(const Media& target, Media*& retriever) {
     MovieType type =  dynamic_cast<const Movie&>(target).getMovieType();
 
     // retrieve comedy
-    if (type == COMEDY) {
-        return movieCollection.at(COMEDY).retrieve(target, retriever);
+    if (type == MovieType::ComedyType) {
+        return movies.at(MovieType::ComedyType).retrieve(target, retriever);
     }
 
     // retrieve classic
-    else if (type == CLASSIC) {
-        return movieCollection.at(CLASSIC).retrieve(target, retriever);
+    else if (type == MovieType::ClassicType) {
+        return movies.at(MovieType::ClassicType).retrieve(target, retriever);
     }
 
     // retrieve drama
-    else if (type == DRAMA) {
-        return movieCollection.at(DRAMA).retrieve(target, retriever);
+    else if (type == MovieType::DramaType) {
+        return movies.at(MovieType::DramaType).retrieve(target, retriever);
     }
 
     // movie type is not exist
@@ -116,7 +116,7 @@ bool MediaCollection::retrieveMovie(const Media& target, Media*& retriever) {
 bool MediaCollection::remove(const Media& target) {
 
     // check media type
-    if (target.getMediaType() == MOVIE)
+    if (target.getMediaType() == MediaType::DVDMovieType)
         return removeMovie(target);
     // further extention type go here...
 
@@ -130,18 +130,21 @@ bool MediaCollection::remove(const Media& target) {
 bool MediaCollection::removeMovie(const Media& target) {
 
     // retrieve comedy
-    if (dynamic_cast<const Movie&>(target).getMovieType() == COMEDY) {
-        return movieCollection.at(COMEDY).remove(target);
+    if (dynamic_cast<const Movie&>(target).getMovieType() 
+        == MovieType::ComedyType) {
+        return movies.at(MovieType::ComedyType).remove(target);
     }
 
     // retrieve classic
-    else if (dynamic_cast<const Movie&>(target).getMovieType() == CLASSIC) {
-        return movieCollection.at(CLASSIC).remove(target);
+    else if (dynamic_cast<const Movie&>(target).getMovieType() 
+        == MovieType::ClassicType) {
+        return movies.at(MovieType::ClassicType).remove(target);
     }
 
     // retrieve drama
-    else if (dynamic_cast<const Movie&>(target).getMovieType() == DRAMA) {
-        return movieCollection.at(DRAMA).remove(target);
+    else if (dynamic_cast<const Movie&>(target).getMovieType() 
+        == MovieType::DramaType) {
+        return movies.at(MovieType::DramaType).remove(target);
     }
 
     // movie type is not exist
@@ -154,9 +157,9 @@ bool MediaCollection::removeMovie(const Media& target) {
 // display
 // Display all media to the system
 void MediaCollection::display() const {
-    movieCollection.at(COMEDY).display();
-    movieCollection.at(DRAMA).display();
-    movieCollection.at(CLASSIC).display();
+    movies.at(MovieType::ComedyType).display();
+    movies.at(MovieType::DramaType).display();
+    movies.at(MovieType::ClassicType).display();
 }
 
 //-----------------------------------------------------------------------------
@@ -170,8 +173,8 @@ int MediaCollection::getTotalMedia() const {
 // getTotalMovie
 // return the number of movie to the system
 int MediaCollection::getTotalMovie() const {
-    int total = movieCollection.at(COMEDY).getTotalNode()
-        + movieCollection.at(CLASSIC).getTotalNode()
-        + movieCollection.at(DRAMA).getTotalNode();
+    int total = movies.at(MovieType::ComedyType).getTotalNode()
+        + movies.at(MovieType::DramaType).getTotalNode()
+        + movies.at(MovieType::ClassicType).getTotalNode();
     return total;
 }

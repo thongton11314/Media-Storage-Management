@@ -3,20 +3,18 @@
 #include "customers_collection.h"
 #include "media_collection.h"
 
-// define constant
-const char BORROW = 'B';
-const char RETURN = 'R';
-const char HISTORY = 'H';
-const char INVENTORY = 'I';
-const char DEFAULT_TYPE = '!';
-const string DEFAULT_FULLCOMMAND = "DEFAULT";
-
 // identifer character as command type
-typedef char CommandType;
+enum CommandType {
+    BorrowType = 'B',
+    ReturnType = 'R',
+    HistoryType = 'H',
+    InventoryType = 'I',
+    DefaultCommandType = '!'
+};
 
 // Class Command:
 //  Description:
-//   - Parent class of Borrow, Return, History, Inventory
+//   - Parent class of BorrowOrReturn, History, Inventory
 //   - This class create command based on the customer requested
 //  Implementation:
 //   - Create command:
@@ -39,7 +37,7 @@ class Command {
 
         // setter
         void setCustomerID(int ID);
-        void setCommandType(char);
+        void setCommandType(CommandType);
 
         // getter
         int getCustomerID() const;
@@ -47,16 +45,15 @@ class Command {
 
         // function
         // process
-        virtual bool process(MediaCollection&, CustomerCollection&);
+        virtual void process(MediaCollection&, CustomerCollection&);
 
     protected:
         int customerID;
-        CommandType type;
+        CommandType commandType;
         string fullCommand;
         virtual ostream& out(ostream &) const;
 };
-#include "command_borrow.h"
-#include "command_return.h"
+#include "command_borrow_or_return.h"
 #include "command_history.h"
 #include "command_inventory.h"
 #endif // !_COMMANDS_

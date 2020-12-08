@@ -42,10 +42,10 @@ public:
 private:
 
     // hold comediesCollection, dramasCollection, classicCollection
-    map<MovieType, BSTree<Media>> movieCollection;
-    BSTree<Media> comedyCollection;
-    BSTree<Media> dramaCollection;
-    BSTree<Media> classicCollection;
+    map<MovieType, BSTree<Media>> movies;
+    BSTree<Media> comedies;
+    BSTree<Media> dramas;
+    BSTree<Media> classics;
 
     // further media type collection extention go here
 

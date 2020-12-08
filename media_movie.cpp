@@ -50,7 +50,7 @@ int Movie::getYear() const {
 // getMediaType
 // return the type of the movie
 MediaType Movie::getMediaType() const {
-    return MOVIE;
+    return MediaType::DVDMovieType;
 }
 
 //-----------------------------------------------------------------------------

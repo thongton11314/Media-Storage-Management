@@ -13,7 +13,7 @@ const int TABLE_SIZE = 97;
 //   - This class create a hashtable to store key and value within the table
 //  Implementation:
 //   - Hashtable is impletemnted by using probing technique
-//      - Binary Search Ttree is used as each bucket
+//      - Binary Search Tree is used as each bucket
 template <typename Key, typename Val>
 class Hashtable {
 public:
@@ -86,7 +86,7 @@ bool Hashtable<Key, Val>::insertKeyValue(Key key, Val * val) {
         return table[hash]->insert(val);
     }
 
-    // collision
+    // insert in vailable bucket, and handle collision
     else {
 
         // if return false, front end incharge of memory management
@@ -114,13 +114,14 @@ bool Hashtable<Key, Val>::retrieveValue(Key key, Val *& retriever) const {
         return false;
     }
 
+    // check value
     else {
         Val* tempRetrive = nullptr;
         const Val tempTarget(key);
         return table[hash]->retrieve(tempTarget, retriever);
     }
 
-    return false; // need to be coded
+    return false;
 }
 
 //----------------------------------------------------------------------------
@@ -204,11 +205,11 @@ void Hashtable<Key, Val>::makeEmpty() {
         // delete tree
         if (this->table[i] != nullptr) {
             this->table[i]->makeEmpty();
-        }
 
-        // delete bucket
-        delete this->table[i];
-        this->table[i] = nullptr;
+            // delete bucket
+            delete this->table[i];
+            this->table[i] = nullptr;
+        }
     }
 }
 #endif //!_HASTABLE_

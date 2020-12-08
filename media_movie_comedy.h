@@ -28,7 +28,6 @@ public:
 
     // getter
     virtual MovieType getMovieType() const;
-    virtual string getHashKey() const;
 
     void print(ostream & out) const;
 

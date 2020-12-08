@@ -37,7 +37,6 @@ public:
     string getMajorActorFirst() const;
     string getMajorActorLast() const;
     virtual MovieType getMovieType() const;
-    virtual string getHashKey() const;
 
     // function
     void print(ostream & out) const;
