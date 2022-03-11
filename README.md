@@ -30,4 +30,4 @@
         - Get commands then access Customer and Media Collection to process commands.
 
 # Architecture
-![alt text](https://github.com/thongton11314/Data-Manipulation/blob/main/UML.pdf)
+![alt text](https://github.com/thongton11314/Data-Manipulation/blob/main/UML_Short.png)
