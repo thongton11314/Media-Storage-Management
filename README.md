@@ -28,3 +28,6 @@
         - Store all movies in Media Collection
     - 4: Process commands by reading each command from "data4commands.txt"
         - Get commands then access Customer and Media Collection to process commands.
+
+# Architecture
+![alt text](https://github.com/thongton11314/Data-Manipulation/blob/main/UML.pdf)
