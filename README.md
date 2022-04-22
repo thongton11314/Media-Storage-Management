@@ -29,5 +29,5 @@
     - 4: Process commands by reading each command from "data4commands.txt"
         - Get commands then access Customer and Media Collection to process commands.
 
-# Architecture
+# UML
 ![alt text](https://github.com/thongton11314/Data-Manipulation/blob/main/UML_Short.png)
