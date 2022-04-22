@@ -31,3 +31,6 @@
 
 # UML
 ![alt text](https://github.com/thongton11314/Data-Manipulation/blob/main/UML_Short.png)
+
+# Sample Output
+![alt text](https://github.com/thongton11314/Data-Manipulation/blob/main/Sample_Output.png)
